@@ -19,6 +19,16 @@
             @Html.DisplayFor(model => model.Name)
         </dd>
     </dl>
+    <h3>Teams:</h3>
+    <ul>
+        
+        @foreach (var team in Model.Teams)
+        {
+            <a asp-area="" asp-controller="Teams" asp-action="Details" asp-route-id="@team.Id"><li>@team.Name</li></a>
+        }
+       
+        
+    </ul>
 </div>
 <div>
     <a asp-action="Edit" asp-route-id="@Model.Id">Edit</a> |

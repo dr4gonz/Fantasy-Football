@@ -33,7 +33,13 @@ namespace Fantasy_Football.Controllers
                 return NotFound();
             }
 
-            var league = await _context.League.SingleOrDefaultAsync(m => m.Id == id);
+            var league = await _context.League
+                .Include(l => l.Teams)
+                .SingleOrDefaultAsync(m => m.Id == id);
+            //foreach (var team in league.Teams)
+            //{
+            //    Console.WriteLine(team.Name);
+            //}
             if (league == null)
             {
                 return NotFound();
