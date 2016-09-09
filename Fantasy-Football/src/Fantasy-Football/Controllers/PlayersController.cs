@@ -63,7 +63,7 @@ namespace Fantasy_Football.Controllers
                 await _context.SaveChangesAsync();
                 return RedirectToAction("Index");
             }
-            ViewData["TeamId"] = new SelectList(_context.Team, "Id", "Id", player.TeamId);
+            ViewData["TeamId"] = new SelectList(_context.Team, "Id", "Name", player.TeamId);
             return View(player);
         }
 
