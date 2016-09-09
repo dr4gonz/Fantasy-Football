@@ -10,22 +10,22 @@ using Fantasy_Football.Models;
 
 namespace Fantasy_Football.Controllers
 {
-    public class TeamsController : Controller
+    public class LeaguesController : Controller
     {
         private readonly ApplicationDbContext _context;
 
-        public TeamsController(ApplicationDbContext context)
+        public LeaguesController(ApplicationDbContext context)
         {
             _context = context;    
         }
 
-        // GET: Teams
+        // GET: Leagues
         public async Task<IActionResult> Index()
         {
-            return View(await _context.Team.ToListAsync());
+            return View(await _context.League.ToListAsync());
         }
 
-        // GET: Teams/Details/5
+        // GET: Leagues/Details/5
         public async Task<IActionResult> Details(int? id)
         {
             if (id == null)
@@ -33,39 +33,36 @@ namespace Fantasy_Football.Controllers
                 return NotFound();
             }
 
-            var team = await _context.Team.SingleOrDefaultAsync(m => m.Id == id);
-            if (team == null)
+            var league = await _context.League.SingleOrDefaultAsync(m => m.Id == id);
+            if (league == null)
             {
                 return NotFound();
             }
 
-            return View(team);
+            return View(league);
         }
 
-        // GET: Teams/Create
+        // GET: Leagues/Create
         public IActionResult Create()
         {
-            ViewData["LeagueId"] = new SelectList(_context.League, "Id", "Name");
             return View();
         }
 
-        // POST: Teams/Create
+        // POST: Leagues/Create
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("Id,ApplicationUserId,LeagueId,Name")] Team team)
+        public async Task<IActionResult> Create([Bind("Id,Name")] League league)
         {
-
             if (ModelState.IsValid)
-            { 
-                _context.Add(team);
+            {
+                _context.Add(league);
                 await _context.SaveChangesAsync();
                 return RedirectToAction("Index");
             }
-            ViewData["LeagueId"] = new SelectList(_context.League, "Id", "Name", team.LeagueId);
-            return View(team);
+            return View(league);
         }
 
-        // GET: Teams/Edit/5
+        // GET: Leagues/Edit/5
         public async Task<IActionResult> Edit(int? id)
         {
             if (id == null)
@@ -73,22 +70,22 @@ namespace Fantasy_Football.Controllers
                 return NotFound();
             }
 
-            var team = await _context.Team.SingleOrDefaultAsync(m => m.Id == id);
-            if (team == null)
+            var league = await _context.League.SingleOrDefaultAsync(m => m.Id == id);
+            if (league == null)
             {
                 return NotFound();
             }
-            return View(team);
+            return View(league);
         }
 
-        // POST: Teams/Edit/5
+        // POST: Leagues/Edit/5
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("Id,ApplicationUserId,Name")] Team team)
+        public async Task<IActionResult> Edit(int id, [Bind("Id,Name")] League league)
         {
-            if (id != team.Id)
+            if (id != league.Id)
             {
                 return NotFound();
             }
@@ -97,12 +94,12 @@ namespace Fantasy_Football.Controllers
             {
                 try
                 {
-                    _context.Update(team);
+                    _context.Update(league);
                     await _context.SaveChangesAsync();
                 }
                 catch (DbUpdateConcurrencyException)
                 {
-                    if (!TeamExists(team.Id))
+                    if (!LeagueExists(league.Id))
                     {
                         return NotFound();
                     }
@@ -113,10 +110,10 @@ namespace Fantasy_Football.Controllers
                 }
                 return RedirectToAction("Index");
             }
-            return View(team);
+            return View(league);
         }
 
-        // GET: Teams/Delete/5
+        // GET: Leagues/Delete/5
         public async Task<IActionResult> Delete(int? id)
         {
             if (id == null)
@@ -124,29 +121,29 @@ namespace Fantasy_Football.Controllers
                 return NotFound();
             }
 
-            var team = await _context.Team.SingleOrDefaultAsync(m => m.Id == id);
-            if (team == null)
+            var league = await _context.League.SingleOrDefaultAsync(m => m.Id == id);
+            if (league == null)
             {
                 return NotFound();
             }
 
-            return View(team);
+            return View(league);
         }
 
-        // POST: Teams/Delete/5
+        // POST: Leagues/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> DeleteConfirmed(int id)
         {
-            var team = await _context.Team.SingleOrDefaultAsync(m => m.Id == id);
-            _context.Team.Remove(team);
+            var league = await _context.League.SingleOrDefaultAsync(m => m.Id == id);
+            _context.League.Remove(league);
             await _context.SaveChangesAsync();
             return RedirectToAction("Index");
         }
 
-        private bool TeamExists(int id)
+        private bool LeagueExists(int id)
         {
-            return _context.Team.Any(e => e.Id == id);
+            return _context.League.Any(e => e.Id == id);
         }
     }
 }
