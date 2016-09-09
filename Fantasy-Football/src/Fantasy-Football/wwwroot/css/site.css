@@ -35,6 +35,13 @@ textarea {
     padding-left: 0.5em;
 }
 
+.carousel-image {
+    width: 1160px;
+    max-width: 1160px;
+    max-height: 360px;
+
+}
+
 /* Make .svg files in the carousel display properly in older browsers */
 .carousel-inner .item img[src$=".svg"]
 {
