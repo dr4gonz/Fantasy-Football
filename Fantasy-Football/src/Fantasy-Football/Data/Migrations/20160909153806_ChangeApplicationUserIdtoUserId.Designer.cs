@@ -8,9 +8,10 @@ using Fantasy_Football.Data;
 namespace Fantasy_Football.Data.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    partial class ApplicationDbContextModelSnapshot : ModelSnapshot
+    [Migration("20160909153806_ChangeApplicationUserIdtoUserId")]
+    partial class ChangeApplicationUserIdtoUserId
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
             modelBuilder
                 .HasAnnotation("ProductVersion", "1.0.0-rtm-21431")
