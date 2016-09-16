@@ -7,13 +7,14 @@ using System.Threading.Tasks;
 
 namespace Fantasy_Football.Models
 {
+    [Table("Players")]
     public class Player
     {
         [Key]
         public int Id { get; set; }
         public string Name { get; set; }
         public string Position { get; set; }
-        public int TeamId { get; set; }
+        public int? TeamId { get; set; }
         public virtual Team Team { get; set; }
     }
 }

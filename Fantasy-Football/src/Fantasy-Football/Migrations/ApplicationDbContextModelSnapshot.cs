@@ -5,13 +5,12 @@ using Microsoft.EntityFrameworkCore.Metadata;
 using Microsoft.EntityFrameworkCore.Migrations;
 using Fantasy_Football.Data;
 
-namespace Fantasy_Football.Data.Migrations
+namespace FantasyFootball.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20160909153806_ChangeApplicationUserIdtoUserId")]
-    partial class ChangeApplicationUserIdtoUserId
+    partial class ApplicationDbContextModelSnapshot : ModelSnapshot
     {
-        protected override void BuildTargetModel(ModelBuilder modelBuilder)
+        protected override void BuildModel(ModelBuilder modelBuilder)
         {
             modelBuilder
                 .HasAnnotation("ProductVersion", "1.0.0-rtm-21431")
@@ -30,6 +29,8 @@ namespace Fantasy_Football.Data.Migrations
                         .HasAnnotation("MaxLength", 256);
 
                     b.Property<bool>("EmailConfirmed");
+
+                    b.Property<int?>("LeagueId");
 
                     b.Property<bool>("LockoutEnabled");
 
@@ -56,6 +57,8 @@ namespace Fantasy_Football.Data.Migrations
 
                     b.HasKey("Id");
 
+                    b.HasIndex("LeagueId");
+
                     b.HasIndex("NormalizedEmail")
                         .HasName("EmailIndex");
 
@@ -64,6 +67,24 @@ namespace Fantasy_Football.Data.Migrations
                         .HasName("UserNameIndex");
 
                     b.ToTable("AspNetUsers");
+                });
+
+            modelBuilder.Entity("Fantasy_Football.Models.League", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd();
+
+                    b.Property<string>("Name");
+
+                    b.Property<int>("OwnerId");
+
+                    b.Property<string>("OwnerId1");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("OwnerId1");
+
+                    b.ToTable("Leagues");
                 });
 
             modelBuilder.Entity("Fantasy_Football.Models.Player", b =>
@@ -75,13 +96,13 @@ namespace Fantasy_Football.Data.Migrations
 
                     b.Property<string>("Position");
 
-                    b.Property<int>("TeamId");
+                    b.Property<int?>("TeamId");
 
                     b.HasKey("Id");
 
                     b.HasIndex("TeamId");
 
-                    b.ToTable("Player");
+                    b.ToTable("Players");
                 });
 
             modelBuilder.Entity("Fantasy_Football.Models.Team", b =>
@@ -91,15 +112,19 @@ namespace Fantasy_Football.Data.Migrations
 
                     b.Property<string>("ApplicationUserId");
 
+                    b.Property<int>("LeagueId");
+
                     b.Property<string>("Name");
 
-                    b.Property<int>("UserId");
+                    b.Property<int?>("UserId");
 
                     b.HasKey("Id");
 
                     b.HasIndex("ApplicationUserId");
 
-                    b.ToTable("Team");
+                    b.HasIndex("LeagueId");
+
+                    b.ToTable("Teams");
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.EntityFrameworkCore.IdentityRole", b =>
@@ -209,19 +234,37 @@ namespace Fantasy_Football.Data.Migrations
                     b.ToTable("AspNetUserTokens");
                 });
 
+            modelBuilder.Entity("Fantasy_Football.Models.ApplicationUser", b =>
+                {
+                    b.HasOne("Fantasy_Football.Models.League")
+                        .WithMany("Users")
+                        .HasForeignKey("LeagueId");
+                });
+
+            modelBuilder.Entity("Fantasy_Football.Models.League", b =>
+                {
+                    b.HasOne("Fantasy_Football.Models.ApplicationUser", "Owner")
+                        .WithMany()
+                        .HasForeignKey("OwnerId1");
+                });
+
             modelBuilder.Entity("Fantasy_Football.Models.Player", b =>
                 {
                     b.HasOne("Fantasy_Football.Models.Team", "Team")
                         .WithMany("Players")
-                        .HasForeignKey("TeamId")
-                        .OnDelete(DeleteBehavior.Cascade);
+                        .HasForeignKey("TeamId");
                 });
 
             modelBuilder.Entity("Fantasy_Football.Models.Team", b =>
                 {
                     b.HasOne("Fantasy_Football.Models.ApplicationUser", "ApplicationUser")
-                        .WithMany()
+                        .WithMany("Teams")
                         .HasForeignKey("ApplicationUserId");
+
+                    b.HasOne("Fantasy_Football.Models.League", "League")
+                        .WithMany("Teams")
+                        .HasForeignKey("LeagueId")
+                        .OnDelete(DeleteBehavior.Cascade);
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.EntityFrameworkCore.IdentityRoleClaim<string>", b =>
