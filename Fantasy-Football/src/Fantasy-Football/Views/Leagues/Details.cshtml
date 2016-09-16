@@ -10,22 +10,38 @@
 <div>
     <h4>League</h4>
     <hr />
-    <a asp-area="" asp-controller="Teams" asp-action="Create">Create Team</a>
+    
     <dl class="dl-horizontal">
         <dt>
             @Html.DisplayNameFor(model => model.Name)
         </dt>
+        <dt>
+            Email
+        </dt>
         <dd>
             @Html.DisplayFor(model => model.Name)
         </dd>
+        <dd>
+            @Html.DisplayFor(model => model.Owner.UserName)
+        </dd>
     </dl>
     <h3>Teams:</h3>
+    <a asp-area="" asp-controller="Teams" asp-action="Create">Create Team</a>
     <ul>
-        
-        @foreach (var team in Model.Teams)
+        @if(Model.Teams.Count < 1)
         {
-            <a asp-area="" asp-controller="Teams" asp-action="Details" asp-route-id="@team.Id"><li>@team.Name</li></a>
+           <li>No Teams Have been Added yet!. <a asp-area="" asp-controller="Teams" asp-action="Create">Click Here</a> to add one.</li>
+
         }
+        else
+        {
+            @foreach (var team in Model.Teams)
+            {
+                <a asp-area="" asp-controller="Teams" asp-action="Details" asp-route-id="@team.Id"><li>@team.Name</li></a>
+            }
+
+        }
+        
        
         
     </ul>

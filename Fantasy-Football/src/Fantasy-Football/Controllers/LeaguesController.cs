@@ -7,16 +7,20 @@ using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using Fantasy_Football.Data;
 using Fantasy_Football.Models;
+using Microsoft.AspNetCore.Identity;
+using System.Security.Claims;
 
 namespace Fantasy_Football.Controllers
 {
     public class LeaguesController : Controller
     {
         private readonly ApplicationDbContext _context;
+        private UserManager<ApplicationUser> _userManager;
 
-        public LeaguesController(ApplicationDbContext context)
+        public LeaguesController(ApplicationDbContext context, UserManager<ApplicationUser> userManager)
         {
-            _context = context;    
+            _context = context;
+            _userManager = userManager;
         }
 
         // GET: Leagues
@@ -34,12 +38,9 @@ namespace Fantasy_Football.Controllers
             }
 
             var league = await _context.League
+                .Include(l => l.Owner)
                 .Include(l => l.Teams)
                 .SingleOrDefaultAsync(m => m.Id == id);
-            //foreach (var team in league.Teams)
-            //{
-            //    Console.WriteLine(team.Name);
-            //}
             if (league == null)
             {
                 return NotFound();
@@ -61,6 +62,9 @@ namespace Fantasy_Football.Controllers
         {
             if (ModelState.IsValid)
             {
+                var userId = this.User.FindFirst(ClaimTypes.NameIdentifier)?.Value;
+                var currentUser = await _userManager.FindByIdAsync(userId);
+                league.Owner = currentUser;
                 _context.Add(league);
                 await _context.SaveChangesAsync();
                 return RedirectToAction("Index");

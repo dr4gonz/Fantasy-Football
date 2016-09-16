@@ -7,16 +7,19 @@ using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using Fantasy_Football.Data;
 using Fantasy_Football.Models;
+using Microsoft.AspNetCore.Identity;
 
 namespace Fantasy_Football.Controllers
 {
     public class TeamsController : Controller
     {
         private readonly ApplicationDbContext _context;
+        private UserManager<ApplicationUser> _userManager;
 
-        public TeamsController(ApplicationDbContext context)
+        public TeamsController(ApplicationDbContext context, UserManager<ApplicationUser> userManager)
         {
-            _context = context;    
+            _context = context;
+            _userManager = userManager;
         }
 
         // GET: Teams
@@ -52,7 +55,7 @@ namespace Fantasy_Football.Controllers
         // POST: Teams/Create
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("Id,ApplicationUserId,LeagueId,Name")] Team team)
+        public async Task<IActionResult> Create([Bind("Id,LeagueId,Name")] Team team)
         {
 
             if (ModelState.IsValid)
