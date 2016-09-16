@@ -8,9 +8,10 @@ using Fantasy_Football.Data;
 namespace FantasyFootball.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    partial class ApplicationDbContextModelSnapshot : ModelSnapshot
+    [Migration("20160916192937_UpdateMigrations")]
+    partial class UpdateMigrations
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
             modelBuilder
                 .HasAnnotation("ProductVersion", "1.0.0-rtm-21431")
@@ -112,13 +113,15 @@ namespace FantasyFootball.Migrations
 
                     b.Property<string>("Name");
 
-                    b.Property<string>("UserId");
+                    b.Property<int?>("UserId");
+
+                    b.Property<string>("UserId1");
 
                     b.HasKey("Id");
 
                     b.HasIndex("LeagueId");
 
-                    b.HasIndex("UserId");
+                    b.HasIndex("UserId1");
 
                     b.ToTable("Teams");
                 });
@@ -260,7 +263,7 @@ namespace FantasyFootball.Migrations
 
                     b.HasOne("Fantasy_Football.Models.ApplicationUser", "User")
                         .WithMany("Teams")
-                        .HasForeignKey("UserId");
+                        .HasForeignKey("UserId1");
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.EntityFrameworkCore.IdentityRoleClaim<string>", b =>
