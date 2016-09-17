@@ -15,8 +15,14 @@
         <dt>
             @Html.DisplayNameFor(model => model.Name)
         </dt>
+        <dt>
+            User
+        </dt>
         <dd>
             @Html.DisplayFor(model => model.Name)
+        </dd>
+        <dd>
+            @Html.DisplayFor(model => model.User.UserName)
         </dd>
     </dl>
 </div>

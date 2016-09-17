@@ -36,7 +36,9 @@ namespace Fantasy_Football.Controllers
                 return NotFound();
             }
 
-            var team = await _context.Team.SingleOrDefaultAsync(m => m.Id == id);
+            var team = await _context.Team
+                .Include(t => t.User)
+                .SingleOrDefaultAsync(m => m.Id == id);
             if (team == null)
             {
                 return NotFound();
@@ -49,17 +51,20 @@ namespace Fantasy_Football.Controllers
         public IActionResult Create()
         {
             ViewData["LeagueId"] = new SelectList(_context.League, "Id", "Name");
+            ViewData["UserId"] = new SelectList(_context.User, "Id", "Email");
             return View();
         }
 
         // POST: Teams/Create
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("Id,LeagueId,Name")] Team team)
+        public async Task<IActionResult> Create([Bind("Id,LeagueId,UserId,Name")] Team team)
         {
 
             if (ModelState.IsValid)
-            { 
+            {
+                var user = await _context.User.FirstOrDefaultAsync(u => u.Id == Request.Form["User.Id"]);
+                team.User = user;
                 _context.Add(team);
                 await _context.SaveChangesAsync();
                 return RedirectToAction("Index");
