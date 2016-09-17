@@ -35,10 +35,10 @@
         }
         else
         {
-            @foreach (var team in Model.Teams)
-            {
-                <a asp-area="" asp-controller="Teams" asp-action="Details" asp-route-id="@team.Id"><li>@team.Name</li></a>
-            }
+                @foreach (var team in Model.Teams)
+                {
+                    <li><a asp-area="" asp-controller="Teams" asp-action="Details" asp-route-id="@team.Id">@team.Name</a></li>
+                }
 
         }
         
