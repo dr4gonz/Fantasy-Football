@@ -1,0 +1,15 @@
+﻿@model Fantasy_Football.Models.ApplicationUser
+
+@{
+    ViewData["Title"] = "My Teams";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>My Teams</h2>
+<ul>
+    @foreach(var team in Model.Teams)
+    {
+        <li>@team.Name - @team.League.Name</li>
+
+    }
+</ul>

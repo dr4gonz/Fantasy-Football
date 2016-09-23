@@ -64,8 +64,10 @@ namespace Fantasy_Football.Controllers
             if (ModelState.IsValid)
             {
                 var user = await _context.User.FirstOrDefaultAsync(u => u.Id == Request.Form["User.Id"]);
+                var league = await _context.League.FirstOrDefaultAsync(l => l.Id == int.Parse(Request.Form["LeagueId"]));
                 team.User = user;
                 _context.Add(team);
+                _context.Entry(league).State = EntityState.Modified;
                 await _context.SaveChangesAsync();
                 return RedirectToAction("Index");
             }
