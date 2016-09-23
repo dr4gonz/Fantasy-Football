@@ -27,6 +27,31 @@
     </dl>
 </div>
 <div>
+    @if(Model.Players.Count > 0)
+    {
+    <h4>Players</h4>
+    <hr />
+    <table class="table table-bordered">
+        <tr>
+            <th>Name</th>
+            <th>Position</th>
+        </tr>
+        @foreach(var player in Model.Players)
+        {
+        <tr>
+            <td>@player.Name</td>
+            <td>@player.Position</td>
+        </tr>
+        }
+    </table>
+    }
+    else
+    {
+        <p>This Team has no players</p>
+
+    }
+</div>
+<div>
     <a asp-action="Edit" asp-route-id="@Model.Id">Edit</a> |
     <a asp-action="Index">Back to List</a>
 </div>

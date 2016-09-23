@@ -38,6 +38,7 @@ namespace Fantasy_Football.Controllers
 
             var team = await _context.Team
                 .Include(t => t.User)
+                .Include(t => t.Players)
                 .SingleOrDefaultAsync(m => m.Id == id);
             if (team == null)
             {
