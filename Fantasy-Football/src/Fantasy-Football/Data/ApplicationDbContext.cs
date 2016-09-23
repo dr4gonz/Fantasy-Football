@@ -26,5 +26,6 @@ namespace Fantasy_Football.Data
 
         public DbSet<League> League { get; set; }
         public DbSet<ApplicationUser> User { get; set; }
+        public DbSet<LeaguesUsers> LeaguesUsers { get; set; }
     }
 }

@@ -38,6 +38,7 @@ namespace Fantasy_Football.Controllers
             }
 
             var league = await _context.League
+                .Include(l => l.LeaguesUsers)
                 .Include(l => l.Owner)
                 .Include(l => l.Teams)
                 .SingleOrDefaultAsync(m => m.Id == id);
@@ -64,8 +65,14 @@ namespace Fantasy_Football.Controllers
             {
                 var userId = this.User.FindFirst(ClaimTypes.NameIdentifier)?.Value;
                 var currentUser = await _userManager.FindByIdAsync(userId);
+
                 league.Owner = currentUser;
+
+                LeaguesUsers newLeaguesUsers = new LeaguesUsers { League = league, User = currentUser };
+                
+                
                 _context.Add(league);
+                _context.Add(newLeaguesUsers);
                 await _context.SaveChangesAsync();
                 return RedirectToAction("Index");
             }

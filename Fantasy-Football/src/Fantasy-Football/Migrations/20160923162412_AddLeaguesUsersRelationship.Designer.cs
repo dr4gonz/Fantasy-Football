@@ -8,9 +8,10 @@ using Fantasy_Football.Data;
 namespace FantasyFootball.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    partial class ApplicationDbContextModelSnapshot : ModelSnapshot
+    [Migration("20160923162412_AddLeaguesUsersRelationship")]
+    partial class AddLeaguesUsersRelationship
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
             modelBuilder
                 .HasAnnotation("ProductVersion", "1.0.0-rtm-21431")
@@ -29,6 +30,8 @@ namespace FantasyFootball.Migrations
                         .HasAnnotation("MaxLength", 256);
 
                     b.Property<bool>("EmailConfirmed");
+
+                    b.Property<int?>("LeagueId");
 
                     b.Property<bool>("LockoutEnabled");
 
@@ -54,6 +57,8 @@ namespace FantasyFootball.Migrations
                         .HasAnnotation("MaxLength", 256);
 
                     b.HasKey("Id");
+
+                    b.HasIndex("LeagueId");
 
                     b.HasIndex("NormalizedEmail")
                         .HasName("EmailIndex");
@@ -244,6 +249,13 @@ namespace FantasyFootball.Migrations
                     b.ToTable("AspNetUserTokens");
                 });
 
+            modelBuilder.Entity("Fantasy_Football.Models.ApplicationUser", b =>
+                {
+                    b.HasOne("Fantasy_Football.Models.League")
+                        .WithMany("LeaguesUsers")
+                        .HasForeignKey("LeagueId");
+                });
+
             modelBuilder.Entity("Fantasy_Football.Models.League", b =>
                 {
                     b.HasOne("Fantasy_Football.Models.ApplicationUser", "Owner")
@@ -254,7 +266,7 @@ namespace FantasyFootball.Migrations
             modelBuilder.Entity("Fantasy_Football.Models.LeaguesUsers", b =>
                 {
                     b.HasOne("Fantasy_Football.Models.League", "League")
-                        .WithMany("LeaguesUsers")
+                        .WithMany()
                         .HasForeignKey("LeagueId");
 
                     b.HasOne("Fantasy_Football.Models.ApplicationUser", "User")

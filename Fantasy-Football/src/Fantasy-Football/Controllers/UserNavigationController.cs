@@ -33,5 +33,12 @@ namespace Fantasy_Football.Controllers
                 .SingleOrDefaultAsync(u => u.Id == userId);
             return View(currentUser);
         }
+        public async Task<IActionResult> MyLeagues(int id)
+        {
+            var userId = this.User.FindFirst(ClaimTypes.NameIdentifier)?.Value;
+            var currentUser = await _context.User
+                .SingleOrDefaultAsync(u => u.Id == userId);
+            return View(currentUser);
+        }
     }
 }
