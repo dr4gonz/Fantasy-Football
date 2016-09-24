@@ -27,24 +27,10 @@
     </dl>
 </div>
 <div>
-    @if(Model.Players.Count > 0)
-    {
     <h4>Players</h4>
     <hr />
-    <form asp-action="Assign" id="assignPlayer">
-        <input type="hidden" value="@Model.Id" id="teamId"/>
-        <div class="form-group">
-            <label asp-for="Players" class="col-md-2 control-label"></label>
-            <div class="col-md-10">
-                <select asp-for="Players" class="form-control" asp-items="ViewBag.Players"></select>
-            </div>
-        </div>
-        <div class="form-group">
-            <div class="col-md-offset-2 col-md-10">
-                <input type="submit" value="Assign" class="btn btn-default" />
-            </div>
-        </div>
-    </form>
+    @if(Model.Players.Count > 0)
+    {
     <table class="table table-bordered" id="playerTable">
         <tr>
             <th>Name</th>
@@ -64,6 +50,22 @@
         <p>This Team has no players</p>
 
     }
+</div>
+<div>
+    <form asp-action="Assign" id="assignPlayer">
+        <input type="hidden" value="@Model.Id" id="teamId" />
+        <div class="form-group">
+            <label asp-for="Players" class="col-md-2 control-label"></label>
+            <div class="col-md-10">
+                <select asp-for="Players" class="form-control" asp-items="ViewBag.Players"></select>
+            </div>
+        </div>
+        <div class="form-group">
+            <div class="col-md-offset-2 col-md-10">
+                <input type="submit" value="Assign" class="btn btn-default" />
+            </div>
+        </div>
+    </form>
 </div>
 <div>
     <a asp-action="Edit" asp-route-id="@Model.Id">Edit</a> |
