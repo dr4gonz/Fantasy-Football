@@ -10,7 +10,6 @@
         newTeam.Name = $("#teamName").val();
         newTeam.LeagueId = $("#LeagueId").val();
         newTeam.UserId = $("#UserId").val();
-        console.log(newTeam);
         $.ajax({
             url: '/Leagues/NewTeam',
             type: "POST",
@@ -20,7 +19,6 @@
                 console.log(e);
             },
             success: function (result) {
-                console.log(result);
                 $("#teamList").append('<li><a href="/Teams/Details/' + result.id + '">' + result.name + '</a></li>');
             }
         });

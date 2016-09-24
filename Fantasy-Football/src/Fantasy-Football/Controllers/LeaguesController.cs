@@ -172,7 +172,6 @@ namespace Fantasy_Football.Controllers
             var user = await _context.User.FirstOrDefaultAsync(u => u.Id == UserId);
             var league = await _context.League.FirstOrDefaultAsync(l => l.Id == int.Parse(LeagueId));
             Team newTeam = new Team(Name, leagueId, user, league);
-            Console.WriteLine(newTeam);
             _context.Add(newTeam);
             _context.Entry(league).State = EntityState.Modified;
             await _context.SaveChangesAsync();
