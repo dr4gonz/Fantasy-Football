@@ -16,5 +16,6 @@ namespace Fantasy_Football.Models
         public string Position { get; set; }
         public int? TeamId { get; set; }
         public virtual Team Team { get; set; }
+        public Player() { }
     }
 }

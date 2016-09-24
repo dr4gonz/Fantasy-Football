@@ -4,12 +4,8 @@
     ViewData["Title"] = "Index";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
-
-<h2>Index</h2>
-
-<p>
-    <a asp-action="Create">Create New</a>
-</p>
+<h2>Players Menu</h2>
+@Html.Partial("Create", new Player())
 <table class="table">
     <thead>
         <tr>

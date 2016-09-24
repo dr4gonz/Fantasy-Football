@@ -40,6 +40,7 @@ namespace Fantasy_Football.Controllers
                 .Include(t => t.User)
                 .Include(t => t.Players)
                 .SingleOrDefaultAsync(m => m.Id == id);
+            ViewData["Players"] = new SelectList(_context.Player, "Id", "Name");
             if (team == null)
             {
                 return NotFound();
@@ -159,5 +160,19 @@ namespace Fantasy_Football.Controllers
         {
             return _context.Team.Any(e => e.Id == id);
         }
+        [HttpPost]
+        public async Task<Player> Assign(int PlayerId, int TeamId)
+        {
+            var team = await _context.Team.FirstOrDefaultAsync(t => t.Id == TeamId);
+            var player = await _context.Player.FirstOrDefaultAsync(p => p.Id == PlayerId);
+            player.TeamId = TeamId;
+            player.Team = team;
+            _context.Entry(team).State = EntityState.Modified;
+            _context.Entry(player).State = EntityState.Modified;
+            await _context.SaveChangesAsync();
+            return player;
+
+
+        } 
     }
 }

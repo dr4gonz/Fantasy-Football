@@ -46,14 +46,14 @@ namespace Fantasy_Football.Controllers
         // GET: Players/Create
         public IActionResult Create()
         {
-            ViewData["TeamId"] = new SelectList(_context.Team, "Id", "Id");
+            //ViewData["TeamId"] = new SelectList(_context.Team, "Id", "Id");
             return View();
         }
 
         // POST: Players/Create
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("Id,Name,Position,TeamId")] Player player)
+        public async Task<IActionResult> Create([Bind("Id,Name,Position")] Player player)
         {
             if (ModelState.IsValid)
             {
