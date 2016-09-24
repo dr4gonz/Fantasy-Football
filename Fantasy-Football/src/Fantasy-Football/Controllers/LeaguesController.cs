@@ -42,6 +42,7 @@ namespace Fantasy_Football.Controllers
                 .Include(l => l.Owner)
                 .Include(l => l.Teams)
                 .SingleOrDefaultAsync(m => m.Id == id);
+            ViewData["UserId"] = _context.User.ToList();
             if (league == null)
             {
                 return NotFound();
@@ -152,7 +153,9 @@ namespace Fantasy_Football.Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> DeleteConfirmed(int id)
         {
-            var league = await _context.League.SingleOrDefaultAsync(m => m.Id == id);
+            var league = await _context.League
+                .Include(l => l.LeaguesUsers)
+                .SingleOrDefaultAsync(m => m.Id == id);
             _context.League.Remove(league);
             await _context.SaveChangesAsync();
             return RedirectToAction("Index");
@@ -161,6 +164,20 @@ namespace Fantasy_Football.Controllers
         private bool LeagueExists(int id)
         {
             return _context.League.Any(e => e.Id == id);
+        }
+        [HttpPost]
+        public async Task<Team> NewTeam(string Name, string LeagueId, string UserId)
+        {
+            var leagueId = int.Parse(LeagueId);
+            var user = await _context.User.FirstOrDefaultAsync(u => u.Id == UserId);
+            var league = await _context.League.FirstOrDefaultAsync(l => l.Id == int.Parse(LeagueId));
+            Team newTeam = new Team(Name, leagueId, user, league);
+            Console.WriteLine(newTeam);
+            _context.Add(newTeam);
+            _context.Entry(league).State = EntityState.Modified;
+            await _context.SaveChangesAsync();
+            return newTeam;
+           
         }
     }
 }

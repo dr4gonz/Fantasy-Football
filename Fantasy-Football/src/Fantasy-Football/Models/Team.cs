@@ -18,6 +18,13 @@ namespace Fantasy_Football.Models
         public int LeagueId { get; set; }
         public virtual League League { get; set; }
         public Team() { }
+        public Team(string name, int leagueId, ApplicationUser user, League league)
+        {
+            Name = name;
+            LeagueId = leagueId;
+            User = user;
+            League = league;
+        }
 
 
     }
