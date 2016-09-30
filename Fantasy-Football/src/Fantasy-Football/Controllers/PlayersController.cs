@@ -22,7 +22,9 @@ namespace Fantasy_Football.Controllers
         // GET: Players
         public async Task<IActionResult> Index()
         {
-            var applicationDbContext = _context.Player.Include(p => p.UserTeam);
+            var applicationDbContext = _context.Player
+                .Include(p => p.UserTeam)
+                .OrderBy(player => player.Name);
             return View(await applicationDbContext.ToListAsync());
         }
 
