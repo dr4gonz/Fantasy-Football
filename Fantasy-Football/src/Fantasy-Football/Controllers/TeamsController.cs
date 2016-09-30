@@ -166,7 +166,7 @@ namespace Fantasy_Football.Controllers
             var team = await _context.Team.FirstOrDefaultAsync(t => t.Id == TeamId);
             var player = await _context.Player.FirstOrDefaultAsync(p => p.Id == PlayerId);
             player.TeamId = TeamId;
-            player.Team = team;
+            player.UserTeam = team;
             _context.Entry(team).State = EntityState.Modified;
             _context.Entry(player).State = EntityState.Modified;
             await _context.SaveChangesAsync();

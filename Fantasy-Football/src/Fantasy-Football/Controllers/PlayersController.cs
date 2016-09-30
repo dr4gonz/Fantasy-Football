@@ -22,7 +22,7 @@ namespace Fantasy_Football.Controllers
         // GET: Players
         public async Task<IActionResult> Index()
         {
-            var applicationDbContext = _context.Player.Include(p => p.Team);
+            var applicationDbContext = _context.Player.Include(p => p.UserTeam);
             return View(await applicationDbContext.ToListAsync());
         }
 
@@ -147,6 +147,17 @@ namespace Fantasy_Football.Controllers
         private bool PlayerExists(int id)
         {
             return _context.Player.Any(e => e.Id == id);
+        }
+        [ValidateAntiForgeryToken]
+        public async Task<IActionResult> GetPlayers()
+        {
+            var players = Player.GetPlayers();
+            foreach(var player in players)
+            {
+                _context.Player.Add(player);
+            }
+            await _context.SaveChangesAsync();
+            return View();
         }
     }
 }
