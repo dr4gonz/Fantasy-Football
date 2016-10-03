@@ -8,9 +8,10 @@ using Fantasy_Football.Data;
 namespace FantasyFootball.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    partial class ApplicationDbContextModelSnapshot : ModelSnapshot
+    [Migration("20161003173521_AddNflGamesModel")]
+    partial class AddNflGamesModel
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
             modelBuilder
                 .HasAnnotation("ProductVersion", "1.0.0-rtm-21431")
@@ -133,8 +134,6 @@ namespace FantasyFootball.Migrations
                     b.Property<string>("HomeTeam");
 
                     b.Property<string>("StadiumName");
-
-                    b.Property<string>("Week");
 
                     b.HasKey("Id");
 

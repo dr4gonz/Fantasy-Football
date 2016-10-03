@@ -3,11 +3,22 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
+using Fantasy_Football.Models;
+using Fantasy_Football.Data;
+using Microsoft.AspNetCore.Identity;
 
 namespace Fantasy_Football.Controllers
 {
     public class HomeController : Controller
     {
+        private readonly ApplicationDbContext _context;
+        private UserManager<ApplicationUser> _userManager;
+
+        public HomeController(ApplicationDbContext context, UserManager<ApplicationUser> userManager)
+        {
+            _context = context;
+            _userManager = userManager;
+        }
         public IActionResult Index()
         {
             return View();
@@ -25,6 +36,25 @@ namespace Fantasy_Football.Controllers
             ViewData["Message"] = "Your contact page.";
 
             return View();
+        }
+        public IActionResult Admin()
+        {
+            return View();
+        }
+        public async Task<IActionResult> UpdateDatabase()
+        {
+            //var players = Player.GetPlayers();
+            var games = NflGame.GetGames();
+            //foreach (var player in players)
+            //{
+            //    _context.Player.Add(player);
+            //}
+            foreach (var game in games)
+            {
+                _context.NflGames.Add(game);
+            }
+            await _context.SaveChangesAsync();
+            return RedirectToAction("Index","Home");
         }
 
         public IActionResult Error()

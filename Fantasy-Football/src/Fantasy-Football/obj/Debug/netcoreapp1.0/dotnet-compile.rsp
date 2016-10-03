@@ -263,11 +263,17 @@ C:\Users\Matt Reyes\Source\Repos\Fantasy-Football\Fantasy-Football\src\Fantasy-F
 C:\Users\Matt Reyes\Source\Repos\Fantasy-Football\Fantasy-Football\src\Fantasy-Football\Migrations\20160923164426_UpdateMigrations2.Designer.cs
 C:\Users\Matt Reyes\Source\Repos\Fantasy-Football\Fantasy-Football\src\Fantasy-Football\Migrations\20160930195938_UpdateToPlayerModel.cs
 C:\Users\Matt Reyes\Source\Repos\Fantasy-Football\Fantasy-Football\src\Fantasy-Football\Migrations\20160930195938_UpdateToPlayerModel.Designer.cs
+C:\Users\Matt Reyes\Source\Repos\Fantasy-Football\Fantasy-Football\src\Fantasy-Football\Migrations\20161003173521_AddNflGamesModel.cs
+C:\Users\Matt Reyes\Source\Repos\Fantasy-Football\Fantasy-Football\src\Fantasy-Football\Migrations\20161003173521_AddNflGamesModel.Designer.cs
+C:\Users\Matt Reyes\Source\Repos\Fantasy-Football\Fantasy-Football\src\Fantasy-Football\Migrations\20161003180710_AddWeekToNflGameModel.cs
+C:\Users\Matt Reyes\Source\Repos\Fantasy-Football\Fantasy-Football\src\Fantasy-Football\Migrations\20161003180710_AddWeekToNflGameModel.Designer.cs
 C:\Users\Matt Reyes\Source\Repos\Fantasy-Football\Fantasy-Football\src\Fantasy-Football\Migrations\ApplicationDbContextModelSnapshot.cs
 C:\Users\Matt Reyes\Source\Repos\Fantasy-Football\Fantasy-Football\src\Fantasy-Football\Models\ApplicationUser.cs
+C:\Users\Matt Reyes\Source\Repos\Fantasy-Football\Fantasy-Football\src\Fantasy-Football\Models\EnvironmentVariables.cs
 C:\Users\Matt Reyes\Source\Repos\Fantasy-Football\Fantasy-Football\src\Fantasy-Football\Models\League.cs
 C:\Users\Matt Reyes\Source\Repos\Fantasy-Football\Fantasy-Football\src\Fantasy-Football\Models\LeaguesUsers.cs
 C:\Users\Matt Reyes\Source\Repos\Fantasy-Football\Fantasy-Football\src\Fantasy-Football\Models\LeagueViewModel.cs
+C:\Users\Matt Reyes\Source\Repos\Fantasy-Football\Fantasy-Football\src\Fantasy-Football\Models\NflGame.cs
 C:\Users\Matt Reyes\Source\Repos\Fantasy-Football\Fantasy-Football\src\Fantasy-Football\Models\Player.cs
 C:\Users\Matt Reyes\Source\Repos\Fantasy-Football\Fantasy-Football\src\Fantasy-Football\Models\Team.cs
 C:\Users\Matt Reyes\Source\Repos\Fantasy-Football\Fantasy-Football\src\Fantasy-Football\Models\AccountViewModels\ExternalLoginConfirmationViewModel.cs

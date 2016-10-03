@@ -52,7 +52,7 @@ namespace Fantasy_Football.Models
             
             var client = new RestClient("https://api.fantasydata.net/v3/nfl/stats/JSON/PlayerSeasonStats");
             var request = new RestRequest("2016REG", Method.GET);
-            client.AddDefaultHeader("Ocp-Apim-Subscription-Key", "f72e23b8f59e4d9a88b713aa62c797c5");
+            client.AddDefaultHeader(EnvironmentVariables.Key, EnvironmentVariables.Token);
             var response = new RestResponse();
             Task.Run(async () =>
             {
@@ -72,13 +72,6 @@ namespace Fantasy_Football.Models
                 }
             }
             return players;
-
-            //JObject jPlayer = responseJson[0] as JObject;
-            //Console.WriteLine(players.Count);
-            //Player player = jPlayer.ToObject<Player>();
-            //Console.WriteLine(players[0].Name);
-            
-
         }
 
         private static Task<IRestResponse> GetResponseContentAsync(RestClient client, RestRequest request)

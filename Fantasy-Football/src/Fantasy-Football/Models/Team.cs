@@ -26,6 +26,7 @@ namespace Fantasy_Football.Models
             League = league;
         }
 
+        
 
     }
 }
