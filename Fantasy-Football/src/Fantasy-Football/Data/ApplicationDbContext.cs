@@ -28,5 +28,6 @@ namespace Fantasy_Football.Data
         public DbSet<ApplicationUser> User { get; set; }
         public DbSet<LeaguesUsers> LeaguesUsers { get; set; }
         public DbSet<NflGame> NflGames { get; set; }
+        public DbSet<NflNews> NflNews { get; set; }
     }
 }

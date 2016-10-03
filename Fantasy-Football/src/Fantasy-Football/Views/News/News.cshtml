@@ -1,0 +1,14 @@
+﻿@model IList<Fantasy_Football.Models.NflNews>
+
+<h2>News</h2>
+@foreach (var item in Model)
+{
+    <div class="row">
+        <div class="col-sm-6 news-block">
+            <p><a href=@item.Link>@item.Title</a></p>
+            <p>@item.Description</p>
+            <p>@item.Date</p>
+        </div>
+    </div>
+
+}

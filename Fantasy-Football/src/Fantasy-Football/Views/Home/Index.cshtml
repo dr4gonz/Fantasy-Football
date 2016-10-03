@@ -1,4 +1,5 @@
-﻿@{
+﻿@model List<Fantasy_Football.Models.NflGame>
+@{
     ViewData["Title"] = "Home Page";
 }
 
@@ -65,3 +66,83 @@
         </ul>
     </div>
 </div>
+<div class="row">
+    <h3>Scores - Week 4</h3>
+    @foreach (var game in Model)
+    {
+        <div class="col-sm-3">
+            <table class="table table-striped">
+                <tr>
+                    <th>
+                    </th>
+                    <th>
+                        Q1
+                    </th>
+                    <th>
+                        Q2
+                    </th>
+                    <th>
+                        Q3
+                    </th>
+                    <th>
+                        Q4
+                    </th>
+                    <th>
+                        OT
+                    </th>
+                    <th>
+                        Final
+                    </th>
+                </tr>
+                <tr>
+                    <td>
+                        @game.AwayTeam
+                    </td>
+                    <td>
+                        @game.AwayScoreQuarter1
+                    </td>
+                    <td>
+                        @game.AwayScoreQuarter2
+                    </td>
+                    <td>
+                        @game.AwayScoreQuarter3
+                    </td>
+                    <td>
+                        @game.AwayScoreQuarter4
+                    </td>
+                    <td>
+                        @game.AwayScoreOvertime
+                    </td>
+                    <td>
+                        @game.AwayScore
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        @game.HomeTeam
+                    </td>
+                    <td>
+                        @game.HomeScoreQuarter1
+                    </td>
+                    <td>
+                        @game.HomeScoreQuarter2
+                    </td>
+                    <td>
+                        @game.HomeScoreQuarter3
+                    </td>
+                    <td>
+                        @game.HomeScoreQuarter4
+                    </td>
+                    <td>
+                        @game.HomeScoreOvertime
+                    </td>
+                    <td>
+                        @game.HomeScore
+                    </td>
+                </tr>
+            </table>
+        </div>
+
+    }
+</div>
+@Html.Partial("~/Views/News/News.cshtml", await NflNews.GetFeeds())

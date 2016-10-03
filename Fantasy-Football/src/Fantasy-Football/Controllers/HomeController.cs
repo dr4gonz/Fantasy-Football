@@ -21,7 +21,13 @@ namespace Fantasy_Football.Controllers
         }
         public IActionResult Index()
         {
-            return View();
+            var games =  _context.NflGames.Where(game => game.Week == "4");
+            List<NflGame> gameList = new List<NflGame>();
+            foreach(var game in games)
+            {
+                gameList.Add(game);
+            }
+            return View(gameList);
         }
 
         public IActionResult About()

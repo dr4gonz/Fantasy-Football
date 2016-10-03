@@ -48,6 +48,10 @@ textarea {
     width: 100%;
 }
 
+.news-block {
+    border: 1px solid black;
+}
+
 /* Hide/rearrange for smaller screens */
 @media screen and (max-width: 767px) {
   /* Hide captions */
