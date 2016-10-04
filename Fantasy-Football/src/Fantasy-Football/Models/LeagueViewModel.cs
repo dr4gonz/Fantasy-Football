@@ -1,9 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-
-namespace Fantasy_Football.Models
+﻿namespace Fantasy_Football.Models
 {
     public class LeagueViewModel
     {
