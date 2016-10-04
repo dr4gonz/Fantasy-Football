@@ -15,11 +15,11 @@
             type: "POST",
             dataType: 'json',
             data: newTeam,
-            error: function(e) {
-                console.log(e);
-            },
             success: function (result) {
                 $("#teamList").append('<li><a href="/Teams/Details/' + result.id + '">' + result.name + '</a></li>');
+            },
+            error: function (e) {
+                console.log(e);
             }
         });
     });

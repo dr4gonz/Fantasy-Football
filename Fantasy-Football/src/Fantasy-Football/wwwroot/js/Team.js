@@ -7,18 +7,18 @@
         event.preventDefault();
         playerInfo.PlayerId = parseInt($("#Players").val());
         playerInfo.TeamId = parseInt($("#teamId").val());
-        console.log(playerInfo);
         $.ajax({
             url: '/Teams/Assign',
             type: "POST",
             dataType: 'json',
             data: playerInfo,
+            success: function (result) {
+                console.log(result);
+                $("#playerTable").append('<tr><td>' + result.name +'</td><td>' + result.position + '</td><td>' + result.fantasyPoints + '</td></tr>');
+            },
             error: function (e) {
                 console.log(e);
             },
-            success: function (result) {
-                $("#playerTable").append('<tr><td>' + result.name +'</td><td>' + result.position + '</td></tr>');
-            }
 
         });
     });
