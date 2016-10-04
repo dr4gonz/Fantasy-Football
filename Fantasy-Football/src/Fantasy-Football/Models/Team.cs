@@ -25,6 +25,18 @@ namespace Fantasy_Football.Models
             User = user;
             League = league;
         }
+        public double Score 
+        {
+            get
+            {
+                double teamScore = 0.00;
+                foreach(var player in this.Players)
+                {
+                    teamScore += player.FantasyPoints;
+                }
+                return Math.Round(teamScore, 2);
+            }
+        }
 
         
 

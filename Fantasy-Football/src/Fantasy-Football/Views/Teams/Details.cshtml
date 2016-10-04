@@ -35,14 +35,21 @@
         <tr>
             <th>Name</th>
             <th>Position</th>
+            <th>Fantasy Points</th>
         </tr>
         @foreach(var player in Model.Players)
         {
         <tr>
             <td>@player.Name</td>
             <td>@player.Position</td>
+            <td>@player.FantasyPoints</td>
         </tr>
         }
+        <tr>
+            <td></td>
+            <td></td>
+            <td>@Model.Score</td>
+        </tr>
     </table>
     }
     else
@@ -51,6 +58,7 @@
 
     }
 </div>
+
 <div>
     <form asp-action="Assign" id="assignPlayer">
         <input type="hidden" value="@Model.Id" id="teamId" />

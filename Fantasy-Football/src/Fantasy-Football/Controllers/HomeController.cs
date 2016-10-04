@@ -6,6 +6,7 @@ using Microsoft.AspNetCore.Mvc;
 using Fantasy_Football.Models;
 using Fantasy_Football.Data;
 using Microsoft.AspNetCore.Identity;
+using Microsoft.EntityFrameworkCore;
 
 namespace Fantasy_Football.Controllers
 {
@@ -49,6 +50,7 @@ namespace Fantasy_Football.Controllers
         }
         public async Task<IActionResult> UpdateDatabase()
         {
+            _context.Database.ExecuteSqlCommand("TRUNCATE TABLE [NflGames]");
             //var players = Player.GetPlayers();
             var games = NflGame.GetGames();
             //foreach (var player in players)

@@ -24,7 +24,8 @@ namespace Fantasy_Football.Controllers
             _context = context;
             _userManager = userManager;
         }
-        
+       
+
         public async Task<IActionResult> MyTeams(int id)
         {
             var userId = this.User.FindFirst(ClaimTypes.NameIdentifier)?.Value;

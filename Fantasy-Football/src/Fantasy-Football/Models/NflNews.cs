@@ -30,7 +30,7 @@ namespace Fantasy_Football.Models
         }
         public static async Task<List<NflNews>> GetFeeds()
         {
-            string rssUrl = "http://www.rotoworld.com/rss/feed.aspx?sport=nfl&ftype=news&count=12&format=rss";
+            string rssUrl = "http://rss.footballguys.com/bloggerrss.xml";
             List<NflNews> news = new List<NflNews>();
 
             try
@@ -39,7 +39,7 @@ namespace Fantasy_Football.Models
                 WebResponse response = await request.GetResponseAsync();
                 XmlReader reader = XmlReader.Create(response.GetResponseStream());
                 XDocument xDoc = XDocument.Load(reader);
-                XNamespace ns = "http://www.w3.org/2005/Atom";
+                //XNamespace ns = "http://www.w3.org/2005/Atom";
 
 
                 var items = from x in xDoc.Descendants("item")
@@ -47,7 +47,7 @@ namespace Fantasy_Football.Models
                              {
                                  title = x.Element("title").Value,
                                  link = x.Element("link").Value,
-                                 date = x.Element(ns+"updated").Value,
+                                 date = x.Element("pubDate").Value,
                                  description = x.Element("description").Value
                              };
                 if (items != null)
