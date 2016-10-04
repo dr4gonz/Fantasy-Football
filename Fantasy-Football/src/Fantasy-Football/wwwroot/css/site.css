@@ -50,6 +50,13 @@ textarea {
 
 .news-block {
     border: 1px solid black;
+    margin: 12px;
+}
+.news-image{
+    height:30px;
+}
+.news-row {
+    margin: 5px;
 }
 
 /* Hide/rearrange for smaller screens */

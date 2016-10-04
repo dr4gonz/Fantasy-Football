@@ -3,7 +3,7 @@
     ViewData["Title"] = "Home Page";
 }
 
-<div id="myCarousel" class="carousel slide" data-ride="carousel" data-interval="6000">
+@*<div id="myCarousel" class="carousel slide" data-ride="carousel" data-interval="6000">
     <ol class="carousel-indicators">
         <li data-target="#myCarousel" data-slide-to="0" class="active"></li>
         <li data-target="#myCarousel" data-slide-to="1"></li>
@@ -35,7 +35,7 @@
         <span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span>
         <span class="sr-only">Next</span>
     </a>
-</div>
+</div>*@
 
 <div class="row">
     <div class="col-md-3">
@@ -88,9 +88,6 @@
                         Q4
                     </th>
                     <th>
-                        OT
-                    </th>
-                    <th>
                         Final
                     </th>
                 </tr>
@@ -111,9 +108,6 @@
                         @game.AwayScoreQuarter4
                     </td>
                     <td>
-                        @game.AwayScoreOvertime
-                    </td>
-                    <td>
                         @game.AwayScore
                     </td>
                 </tr>
@@ -132,9 +126,6 @@
                     </td>
                     <td>
                         @game.HomeScoreQuarter4
-                    </td>
-                    <td>
-                        @game.HomeScoreOvertime
                     </td>
                     <td>
                         @game.HomeScore

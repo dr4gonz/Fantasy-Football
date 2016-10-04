@@ -4,10 +4,30 @@
 @foreach (var item in Model)
 {
     <div class="row">
-        <div class="col-sm-6 news-block">
-            <p><a href=@item.Link>@item.Title</a></p>
-            <p>@item.Description</p>
-            <p>@item.Date</p>
+        <div class="col-lg-6 news-block">
+            <div class="row news-row">
+                <div class="col-sm-2">
+                    @if(item.Team.Length > 0)
+                    {
+                        <img class="img-responsive news-image" src="~/images/nflimages/@(item.Team).gif" alt="@(item.Team) Logo" />
+                    }
+                    else
+                    {
+                        <img class="img-responsive news-image" src="~/images/nflimages/nfl.gif" alt="nfl logo" />
+                    }
+                </div>
+                <div class="col-sm-9">
+                    <a href=@item.Link>@item.Title</a>
+                </div>
+            </div>
+            <div class="row news-row">@item.Description</div>
+            @if (item.Opinion.Length > 0)
+            {
+
+                <div class="row news-row"><p>@item.Opinion</p></div>
+
+            }
+            <div class="row news-row">@item.Date</div>
         </div>
     </div>
 
