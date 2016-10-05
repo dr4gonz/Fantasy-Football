@@ -5,26 +5,12 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<h2>Details</h2>
 
 <div>
     <h4>Team</h4>
     <hr />
-    <dl class="dl-horizontal">
-       
-        <dt>
-            @Html.DisplayNameFor(model => model.Name)
-        </dt>
-        <dt>
-            User
-        </dt>
-        <dd>
-            @Html.DisplayFor(model => model.Name)
-        </dd>
-        <dd>
-            @Html.DisplayFor(model => model.User.UserName)
-        </dd>
-    </dl>
+    <h3>@Html.DisplayFor(model => model.Name)</h3>
+    <h5>@Html.DisplayFor(model=> model.User.UserName)</h5>
 </div>
 <div>
     <h4>Players</h4>
@@ -73,6 +59,6 @@
 </div>
 <div>
     <a asp-action="Edit" asp-route-id="@Model.Id">Edit</a> |
-    <a asp-action="Index">Back to List</a>
+    <a asp-action="MyTeams" asp-controller="UserNavigation">Back to List</a>
 </div>
 <script src="~/js/Team.js"></script>

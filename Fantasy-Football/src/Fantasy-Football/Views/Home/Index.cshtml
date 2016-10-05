@@ -37,103 +37,45 @@
     </a>
 </div>*@
 
-<div class="row">
-    <div class="col-md-3">
-        <h2>View Leagues</h2>
-        <ul>
-            <li><a asp-area="" asp-controller="Leagues" asp-action="Index">View Leagues</a></li>
-            <li><a asp-area="" asp-controller="Leagues" asp-action="Create">Create Leagues</a></li>
-        </ul>
+<div class="container">
+        <h3>Scores - Week 4</h3>
+    <div class="row game-scores">
+        @foreach (var game in Model)
+        {
+            @Html.Partial("~/Views/News/GameScore.cshtml", game)
+        }
     </div>
-    <div class="col-md-3">
-        <h2>Create Teams</h2>
-        <ul>
-            <li><a asp-area="" asp-controller="Teams" asp-action="Index">View Teams</a></li>
-            <li><a asp-area="" asp-controller="Teams" asp-action="Create">Create Teams</a></li>
-        </ul>
+    <div class="row">
+        @Html.Partial("~/Views/News/News.cshtml", await NflNews.GetFeeds())
+        <a asp-controller="News" asp-action="Index">More News -></a>
     </div>
-    <div class="col-md-3">
-        <h2>Create Players</h2>
-        <ul>
-            <li><a asp-area="" asp-controller="Players" asp-action="Index">View Players</a></li>
-        </ul>
-    </div>
-    <div class="col-md-3">
-        <h2>My Profile</h2>
-        <ul>
-            <li><a asp-area="" asp-controller="UserNavigation" asp-action="MyLeagues">My Leagues</a></li>
-            <li><a asp-area="" asp-controller="UserNavigation" asp-action="MyTeams">My Teams</a></li>
-        </ul>
-    </div>
-</div>
-<div class="row">
-    <h3>Scores - Week 4</h3>
-    @foreach (var game in Model)
-    {
-        <div class="col-lg-3">
-            <table class="table table-striped">
-                <tr>
-                    <th>
-                    </th>
-                    <th>
-                        Q1
-                    </th>
-                    <th>
-                        Q2
-                    </th>
-                    <th>
-                        Q3
-                    </th>
-                    <th>
-                        Q4
-                    </th>
-                    <th>
-                        Final
-                    </th>
-                </tr>
-                <tr>
-                    <td>
-                        @game.AwayTeam
-                    </td>
-                    <td>
-                        @game.AwayScoreQuarter1
-                    </td>
-                    <td>
-                        @game.AwayScoreQuarter2
-                    </td>
-                    <td>
-                        @game.AwayScoreQuarter3
-                    </td>
-                    <td>
-                        @game.AwayScoreQuarter4
-                    </td>
-                    <td>
-                        @game.AwayScore
-                    </td>
-                </tr>
-                <tr>
-                    <td>
-                        @game.HomeTeam
-                    </td>
-                    <td>
-                        @game.HomeScoreQuarter1
-                    </td>
-                    <td>
-                        @game.HomeScoreQuarter2
-                    </td>
-                    <td>
-                        @game.HomeScoreQuarter3
-                    </td>
-                    <td>
-                        @game.HomeScoreQuarter4
-                    </td>
-                    <td>
-                        @game.HomeScore
-                    </td>
-                </tr>
-            </table>
+    <div class="row">
+        <div class="col-md-3">
+            <h2>View Leagues</h2>
+            <ul>
+                <li><a asp-area="" asp-controller="Leagues" asp-action="Index">View Leagues</a></li>
+                <li><a asp-area="" asp-controller="Leagues" asp-action="Create">Create Leagues</a></li>
+            </ul>
         </div>
-
-    }
+        <div class="col-md-3">
+            <h2>Create Teams</h2>
+            <ul>
+                <li><a asp-area="" asp-controller="Teams" asp-action="Index">View Teams</a></li>
+                <li><a asp-area="" asp-controller="Teams" asp-action="Create">Create Teams</a></li>
+            </ul>
+        </div>
+        <div class="col-md-3">
+            <h2>Create Players</h2>
+            <ul>
+                <li><a asp-area="" asp-controller="Players" asp-action="Index">View Players</a></li>
+            </ul>
+        </div>
+        <div class="col-md-3">
+            <h2>My Profile</h2>
+            <ul>
+                <li><a asp-area="" asp-controller="UserNavigation" asp-action="MyLeagues">My Leagues</a></li>
+                <li><a asp-area="" asp-controller="UserNavigation" asp-action="MyTeams">My Teams</a></li>
+            </ul>
+        </div>
+    </div>
 </div>
-@Html.Partial("~/Views/News/News.cshtml", await NflNews.GetFeeds())

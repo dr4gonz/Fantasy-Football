@@ -1,7 +1,7 @@
 {
   "runtimeTarget": {
     "name": ".NETCoreApp,Version=v1.0",
-    "signature": "be75f14e47dcaf35bae28ef080b6f40581e3a4c5"
+    "signature": "bd6f86d448821553287490f7000f90f96e491cec"
   },
   "compilationOptions": {
     "defines": [
@@ -37,7 +37,8 @@
           "Microsoft.VisualStudio.Web.BrowserLink.Loader": "14.0.0",
           "Microsoft.EntityFrameworkCore": "1.0.0",
           "Newtonsoft.Json": "9.0.1",
-          "RestSharp.NetCore": "105.2.3"
+          "RestSharp.NetCore": "105.2.3",
+          "FontAwesome": "4.6.3"
         },
         "runtime": {
           "Fantasy-Football.dll": {}
@@ -46,6 +47,7 @@
           "Fantasy-Football.dll": {}
         }
       },
+      "FontAwesome/4.6.3": {},
       "Microsoft.ApplicationInsights/2.1.0": {
         "dependencies": {
           "System.Collections": "4.0.11",
@@ -3918,6 +3920,11 @@
       "type": "project",
       "serviceable": false,
       "sha512": ""
+    },
+    "FontAwesome/4.6.3": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-uskdHHiy1h+YKD1zLGQsw4Ay+z3TCjF6MqQiCLVEd6ArTa1Ma7YoFvd7jYJFjZh3neEhIFfxtl2bHwLORVCWfQ=="
     },
     "Microsoft.ApplicationInsights/2.1.0": {
       "type": "package",

@@ -1,7 +1,7 @@
 {
   "runtimeTarget": {
     "name": ".NETCoreApp,Version=v1.0/",
-    "signature": "ca369c766a999044187f3e20be6ec3aead776d85"
+    "signature": "6ad909586a2160355a83c905da59d6a8d592e33d"
   },
   "compilationOptions": {
     "defines": [
@@ -37,12 +37,14 @@
           "Microsoft.VisualStudio.Web.BrowserLink.Loader": "14.0.0",
           "Microsoft.EntityFrameworkCore": "1.0.0",
           "Newtonsoft.Json": "9.0.1",
-          "RestSharp.NetCore": "105.2.3"
+          "RestSharp.NetCore": "105.2.3",
+          "FontAwesome": "4.6.3"
         },
         "compile": {
           "Fantasy-Football.dll": {}
         }
       },
+      "FontAwesome/4.6.3": {},
       "Libuv/1.9.0": {
         "dependencies": {
           "Microsoft.NETCore.Platforms": "1.0.1"
@@ -2998,12 +3000,14 @@
           "Microsoft.VisualStudio.Web.BrowserLink.Loader": "14.0.0",
           "Microsoft.EntityFrameworkCore": "1.0.0",
           "Newtonsoft.Json": "9.0.1",
-          "RestSharp.NetCore": "105.2.3"
+          "RestSharp.NetCore": "105.2.3",
+          "FontAwesome": "4.6.3"
         },
         "runtime": {
           "Fantasy-Football.dll": {}
         }
       },
+      "FontAwesome/4.6.3": {},
       "Libuv/1.9.0": {
         "dependencies": {
           "Microsoft.NETCore.Platforms": "1.0.1"
@@ -5839,6 +5843,11 @@
       "type": "project",
       "serviceable": false,
       "sha512": ""
+    },
+    "FontAwesome/4.6.3": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-uskdHHiy1h+YKD1zLGQsw4Ay+z3TCjF6MqQiCLVEd6ArTa1Ma7YoFvd7jYJFjZh3neEhIFfxtl2bHwLORVCWfQ=="
     },
     "Libuv/1.9.0": {
       "type": "package",

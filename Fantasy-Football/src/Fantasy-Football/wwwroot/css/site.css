@@ -1,6 +1,7 @@
 ﻿body {
     padding-top: 50px;
     padding-bottom: 20px;
+    background-color: 
 }
 
 /* Wrapping element */
@@ -54,9 +55,40 @@ textarea {
 }
 .news-image{
     height:30px;
+    
 }
 .news-row {
     margin: 5px;
+}
+
+/*navbar*/
+.navbar-inverse {
+    background-color: #00A8E8;
+}
+.navbar-inverse .navbar-brand {
+    color:white;
+}
+
+.navbar-inverse .navbar-nav > li > a{
+    color: white;
+}
+.navbar-inverse .btn-link {
+    color: white;
+}
+
+.table {
+    table-layout: fixed;
+    width: 100%;
+}
+.table th {
+    font-size: 0.8em;
+    text-align:left;
+    padding: 2px;
+}
+.table td {
+    font-size: 0.8em;
+    text-align: left;
+    padding: 2px;
 }
 
 /* Hide/rearrange for smaller screens */

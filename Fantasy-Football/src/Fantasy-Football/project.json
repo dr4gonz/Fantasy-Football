@@ -46,7 +46,8 @@
     },
     "Microsoft.EntityFrameworkCore": "1.0.0",
     "Newtonsoft.Json": "9.0.1",
-    "RestSharp.NetCore": "105.2.3"
+    "RestSharp.NetCore": "105.2.3",
+    "FontAwesome": "4.6.3"
   },
 
   "tools": {

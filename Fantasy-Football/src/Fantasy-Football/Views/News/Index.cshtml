@@ -1,7 +1,11 @@
 ﻿@model IList<Fantasy_Football.Models.NflNews>
+@{
+    ViewData["Title"] = "News";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
 
 <h2>News</h2>
-@foreach (var item in Model.Take(5))
+@foreach (var item in Model)
 {
     <div class="row">
         <div class="col-lg-6 news-block">

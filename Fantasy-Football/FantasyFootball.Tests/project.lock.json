@@ -17,6 +17,9 @@
           "lib/netcoreapp1.0/dotnet-test-xunit.dll": {}
         }
       },
+      "FontAwesome/4.6.3": {
+        "type": "package"
+      },
       "Libuv/1.9.0": {
         "type": "package",
         "dependencies": {
@@ -4364,6 +4367,7 @@
         "type": "project",
         "framework": ".NETCoreApp,Version=v1.0",
         "dependencies": {
+          "FontAwesome": "4.6.3",
           "Microsoft.ApplicationInsights.AspNetCore": "1.0.0",
           "Microsoft.AspNetCore.Authentication.Cookies": "1.0.0",
           "Microsoft.AspNetCore.Diagnostics": "1.0.0",
@@ -4410,6 +4414,24 @@
         "runtimes/unix-x64/lib/net451/dotnet-test-xunit.exe",
         "runtimes/win7-x64/lib/net451/dotnet-test-xunit.exe",
         "runtimes/win7-x86/lib/net451/dotnet-test-xunit.exe"
+      ]
+    },
+    "FontAwesome/4.6.3": {
+      "sha512": "uskdHHiy1h+YKD1zLGQsw4Ay+z3TCjF6MqQiCLVEd6ArTa1Ma7YoFvd7jYJFjZh3neEhIFfxtl2bHwLORVCWfQ==",
+      "type": "package",
+      "path": "FontAwesome/4.6.3",
+      "files": [
+        "Content/Content/font-awesome.css",
+        "Content/Content/font-awesome.min.css",
+        "Content/fonts/FontAwesome.otf",
+        "Content/fonts/fontawesome-webfont.eot",
+        "Content/fonts/fontawesome-webfont.svg",
+        "Content/fonts/fontawesome-webfont.ttf",
+        "Content/fonts/fontawesome-webfont.woff",
+        "Content/fonts/fontawesome-webfont.woff2",
+        "FontAwesome.4.6.3.nupkg.sha512",
+        "FontAwesome.nuspec",
+        "tools/install.ps1"
       ]
     },
     "Libuv/1.9.0": {
