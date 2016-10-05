@@ -24,7 +24,7 @@
         @foreach(var player in Model.Players)
         {
         <tr>
-            <td><a asp-action="Details" asp-controller="Players" asp-route-id="@player.Id">@player.Name</a></td>
+            <td><a asp-action="Details" asp-controller="Players" asp-route-id="@player.Id" asp-route-currentTeamId="@ViewBag.CurrenTeamId">@player.Name</a></td>
             <td>@player.Position</td>
             <td>@player.FantasyPoints</td>
         </tr>

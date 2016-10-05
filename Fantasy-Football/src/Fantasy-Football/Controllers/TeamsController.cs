@@ -41,6 +41,8 @@ namespace Fantasy_Football.Controllers
                 .Include(t => t.Players)
                 .SingleOrDefaultAsync(m => m.Id == id);
             ViewData["Players"] = new SelectList(_context.Player.OrderBy(player => player.Name), "Id", "Name");
+            ViewData["CurrentTeamId"] = id;
+            Console.WriteLine("Team Id" +id);
             if (team == null)
             {
                 return NotFound();

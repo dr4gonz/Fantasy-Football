@@ -7,16 +7,19 @@ using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using Fantasy_Football.Data;
 using Fantasy_Football.Models;
+using Microsoft.AspNetCore.Identity;
 
 namespace Fantasy_Football.Controllers
 {
     public class PlayersController : Controller
     {
         private readonly ApplicationDbContext _context;
+        private UserManager<ApplicationUser> _userManager;
 
-        public PlayersController(ApplicationDbContext context)
+        public PlayersController(ApplicationDbContext context, UserManager<ApplicationUser> userManager)
         {
-            _context = context;    
+            _context = context;
+            _userManager = userManager;
         }
 
         // GET: Players
@@ -24,12 +27,12 @@ namespace Fantasy_Football.Controllers
         {
             var applicationDbContext = _context.Player
                 .Include(p => p.UserTeam)
-                .OrderBy(player => player.Name);
+                .OrderBy(player => player.Position);
             return View(await applicationDbContext.ToListAsync());
         }
 
         // GET: Players/Details/5
-        public async Task<IActionResult> Details(int? id)
+        public async Task<IActionResult> Details(int? id, int currentTeamId)
         {
             if (id == null)
             {
@@ -37,6 +40,8 @@ namespace Fantasy_Football.Controllers
             }
 
             var player = await _context.Player.SingleOrDefaultAsync(m => m.Id == id);
+            ViewData["CurrentTeamId"] = currentTeamId;
+            Console.WriteLine("Team id"+currentTeamId);
             if (player == null)
             {
                 return NotFound();
