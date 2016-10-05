@@ -1,7 +1,7 @@
 ﻿body {
     padding-top: 50px;
     padding-bottom: 20px;
-    background-color: 
+    height: 100%;
 }
 
 /* Wrapping element */
@@ -51,14 +51,17 @@ textarea {
 
 .news-block {
     border: 1px solid black;
-    margin: 15px;
+    margin: 10px;
 }
 .news-image{
-    height:30px;
+    width:45px;
+    margin-top: 5px;
     
 }
 .news-row {
     margin: 5px;
+    padding: 0;
+   
 }
 
 /*navbar*/
@@ -75,7 +78,10 @@ textarea {
 .navbar-inverse .btn-link {
     color: white;
 }
-
+.navigation-col {
+    padding-left: 35px;
+}
+/*Game Score Tables*/
 .table {
     table-layout: fixed;
     width: 100%;
@@ -90,6 +96,7 @@ textarea {
     text-align: left;
     padding: 2px;
 }
+
 
 /* Hide/rearrange for smaller screens */
 @media screen and (max-width: 767px) {
