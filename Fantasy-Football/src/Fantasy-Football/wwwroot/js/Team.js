@@ -14,7 +14,7 @@
             data: playerInfo,
             success: function (result) {
                 console.log(result);
-                $("#playerTable").append('<tr><td>' + result.name +'</td><td>' + result.position + '</td><td>' + result.fantasyPoints + '</td></tr>');
+                $("#playerTable").append('<tr><td><a href="/Players/Details/' + result.id + '">' + result.name +'</a></td><td>' + result.position + '</td><td>' + result.fantasyPoints + '</td></tr>');
             },
             error: function (e) {
                 console.log(e);

@@ -79,5 +79,31 @@ namespace Fantasy_Football.Models
             });
             return tcs.Task;
         }
+        //public static Player GetPlayerStats(int playerId)
+        //{
+
+        //    var client = new RestClient("https://api.fantasydata.net/v3/nfl/stats/JSON/Player/");
+        //    var request = new RestRequest(playerId.ToString(), Method.GET);
+        //    client.AddDefaultHeader(EnvironmentVariables.Key, EnvironmentVariables.Token);
+        //    var response = new RestResponse();
+        //    Task.Run(async () =>
+        //    {
+        //        response = await GetResponseContentAsync(client, request) as RestResponse;
+        //    }).Wait();
+        //    JObject responseJson = JObject.Parse(response.Content);
+        //    List<Player> players = new List<Player>();
+        //    foreach (var jPlayer in responseJson)
+        //    {
+        //        JObject player = jPlayer as JObject;
+        //        var playerPosition = player["Position"].ToString();
+        //        var playerPositionCat = player["PositionCategory"].ToString();
+        //        if (playerPositionCat == "OFF" && ((playerPosition == "QB") || (playerPosition == "WR") || (playerPosition == "RB") || (playerPosition == "TE")))
+        //        {
+        //            Player newPlayer = player.ToObject<Player>();
+        //            players.Add(newPlayer);
+        //        }
+        //    }
+        //    return players;
+        //}
     }
 }
