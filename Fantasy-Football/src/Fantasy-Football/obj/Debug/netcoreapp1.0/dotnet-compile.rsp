@@ -270,6 +270,8 @@ C:\Users\Matt Reyes\Source\Repos\Fantasy-Football\Fantasy-Football\src\Fantasy-F
 C:\Users\Matt Reyes\Source\Repos\Fantasy-Football\Fantasy-Football\src\Fantasy-Football\Migrations\20161003180710_AddWeekToNflGameModel.Designer.cs
 C:\Users\Matt Reyes\Source\Repos\Fantasy-Football\Fantasy-Football\src\Fantasy-Football\Migrations\20161003204857_AddNflNewsModelToDatabase.cs
 C:\Users\Matt Reyes\Source\Repos\Fantasy-Football\Fantasy-Football\src\Fantasy-Football\Migrations\20161003204857_AddNflNewsModelToDatabase.Designer.cs
+C:\Users\Matt Reyes\Source\Repos\Fantasy-Football\Fantasy-Football\src\Fantasy-Football\Migrations\20161005212123_AddPlayerIDtoPlayerModel.cs
+C:\Users\Matt Reyes\Source\Repos\Fantasy-Football\Fantasy-Football\src\Fantasy-Football\Migrations\20161005212123_AddPlayerIDtoPlayerModel.Designer.cs
 C:\Users\Matt Reyes\Source\Repos\Fantasy-Football\Fantasy-Football\src\Fantasy-Football\Migrations\ApplicationDbContextModelSnapshot.cs
 C:\Users\Matt Reyes\Source\Repos\Fantasy-Football\Fantasy-Football\src\Fantasy-Football\Models\ApplicationUser.cs
 C:\Users\Matt Reyes\Source\Repos\Fantasy-Football\Fantasy-Football\src\Fantasy-Football\Models\EnvironmentVariables.cs

@@ -48,21 +48,27 @@ namespace Fantasy_Football.Controllers
         {
             return View();
         }
-        public async Task<IActionResult> UpdateDatabase()
+        public async Task<IActionResult> UpdatePlayers()
+        {
+           
+            var players = Player.GetPlayers();
+            foreach (var player in players)
+            {
+                _context.Player.Add(player);
+            }
+            await _context.SaveChangesAsync();
+            return RedirectToAction("Index","Home");
+        }
+        public async Task<IActionResult> UpdateGames()
         {
             _context.Database.ExecuteSqlCommand("TRUNCATE TABLE [NflGames]");
-            //var players = Player.GetPlayers();
             var games = NflGame.GetGames();
-            //foreach (var player in players)
-            //{
-            //    _context.Player.Add(player);
-            //}
             foreach (var game in games)
             {
                 _context.NflGames.Add(game);
             }
             await _context.SaveChangesAsync();
-            return RedirectToAction("Index","Home");
+            return RedirectToAction("Index", "Home");
         }
 
         public IActionResult Error()
