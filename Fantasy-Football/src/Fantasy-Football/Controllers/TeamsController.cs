@@ -8,6 +8,7 @@ using Microsoft.EntityFrameworkCore;
 using Fantasy_Football.Data;
 using Fantasy_Football.Models;
 using Microsoft.AspNetCore.Identity;
+using Microsoft.AspNetCore.Authorization;
 
 namespace Fantasy_Football.Controllers
 {
@@ -23,6 +24,7 @@ namespace Fantasy_Football.Controllers
         }
 
         // GET: Teams
+        [Authorize]
         public async Task<IActionResult> Index()
         {
             return View(await _context.Team.ToListAsync());
@@ -52,6 +54,7 @@ namespace Fantasy_Football.Controllers
         }
 
         // GET: Teams/Create
+        [Authorize]
         public IActionResult Create()
         {
             ViewData["LeagueId"] = new SelectList(_context.League, "Id", "Name");
@@ -163,6 +166,7 @@ namespace Fantasy_Football.Controllers
             return _context.Team.Any(e => e.Id == id);
         }
         [HttpPost]
+        [Authorize]
         public async Task<Player> Assign(int PlayerId, int TeamId)
         {
             var team = await _context.Team.FirstOrDefaultAsync(t => t.Id == TeamId);

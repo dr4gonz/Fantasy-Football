@@ -7,6 +7,7 @@ using Fantasy_Football.Models;
 using Fantasy_Football.Data;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.AspNetCore.Authorization;
 
 namespace Fantasy_Football.Controllers
 {
@@ -44,6 +45,7 @@ namespace Fantasy_Football.Controllers
 
             return View();
         }
+        [Authorize]
         public IActionResult Admin()
         {
             return View();

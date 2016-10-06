@@ -9,6 +9,7 @@ using Fantasy_Football.Models;
 using Microsoft.AspNetCore.Identity;
 using System.Security.Claims;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.AspNetCore.Authorization;
 
 // For more information on enabling MVC for empty projects, visit http://go.microsoft.com/fwlink/?LinkID=397860
 
@@ -25,19 +26,12 @@ namespace Fantasy_Football.Controllers
             _userManager = userManager;
         }
        
-
+        [Authorize]
         public async Task<IActionResult> MyTeams(int id)
         {
             var userId = this.User.FindFirst(ClaimTypes.NameIdentifier)?.Value;
             var currentUser = await _context.User
                 .Include(u => u.Teams).ThenInclude(t => t.League)
-                .SingleOrDefaultAsync(u => u.Id == userId);
-            return View(currentUser);
-        }
-        public async Task<IActionResult> MyLeagues(int id)
-        {
-            var userId = this.User.FindFirst(ClaimTypes.NameIdentifier)?.Value;
-            var currentUser = await _context.User
                 .SingleOrDefaultAsync(u => u.Id == userId);
             return View(currentUser);
         }

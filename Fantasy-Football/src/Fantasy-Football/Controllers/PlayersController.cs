@@ -8,6 +8,7 @@ using Microsoft.EntityFrameworkCore;
 using Fantasy_Football.Data;
 using Fantasy_Football.Models;
 using Microsoft.AspNetCore.Identity;
+using Microsoft.AspNetCore.Authorization;
 
 namespace Fantasy_Football.Controllers
 {
@@ -22,7 +23,9 @@ namespace Fantasy_Football.Controllers
             _userManager = userManager;
         }
 
+        
         // GET: Players
+        [Authorize]
         public async Task<IActionResult> Index()
         {
             var applicationDbContext = _context.Player
