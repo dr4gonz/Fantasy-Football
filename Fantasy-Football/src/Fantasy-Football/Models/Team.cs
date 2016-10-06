@@ -13,27 +13,30 @@ namespace Fantasy_Football.Models
         public string Name { get; set; }
         public virtual ICollection<Player> Players { get; set; }
         public ApplicationUser User { get; set; }
-        public int LeagueId { get; set; }
-        public virtual League League { get; set; }
         public virtual ICollection<PlayersTeams> PlayersTeams { get; set; }
         public Team() { }
-        public Team(string name, int leagueId, ApplicationUser user, League league)
+        public Team(string name, ApplicationUser user)
         {
             Name = name;
-            LeagueId = leagueId;
             User = user;
-            League = league;
         }
         public double Score 
         {
             get
             {
-                double teamScore = 0.00;
-                foreach(var player in this.PlayersTeams)
+                if(this.PlayersTeams != null)
                 {
-                    teamScore += player.Player.FantasyPoints;
+                    double teamScore = 0.00;
+                    foreach(var player in this.PlayersTeams)
+                    {
+                        teamScore += player.Player.FantasyPoints;
+                    }
+                    return Math.Round(teamScore, 2);
                 }
-                return Math.Round(teamScore, 2);
+                else
+                {
+                    return 0;
+                }
             }
         }
 

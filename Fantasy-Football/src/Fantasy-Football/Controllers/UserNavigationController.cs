@@ -31,7 +31,7 @@ namespace Fantasy_Football.Controllers
         {
             var userId = this.User.FindFirst(ClaimTypes.NameIdentifier)?.Value;
             var currentUser = await _context.User
-                .Include(u => u.Teams).ThenInclude(t => t.League)
+                .Include(u => u.Teams)
                 .SingleOrDefaultAsync(u => u.Id == userId);
             return View(currentUser);
         }

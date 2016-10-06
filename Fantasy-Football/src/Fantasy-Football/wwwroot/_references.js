@@ -1,5 +1,4 @@
 ﻿/// <autosync enabled="true" />
-/// <reference path="js/league.js" />
 /// <reference path="js/site.js" />
 /// <reference path="js/team.js" />
 /// <reference path="lib/bootstrap/dist/js/bootstrap.js" />

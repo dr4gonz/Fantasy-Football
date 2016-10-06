@@ -10,6 +10,77 @@ namespace FantasyFootball.Migrations
         protected override void Up(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.CreateTable(
+                name: "AspNetUsers",
+                columns: table => new
+                {
+                    Id = table.Column<string>(nullable: false),
+                    AccessFailedCount = table.Column<int>(nullable: false),
+                    ConcurrencyStamp = table.Column<string>(nullable: true),
+                    Email = table.Column<string>(maxLength: 256, nullable: true),
+                    EmailConfirmed = table.Column<bool>(nullable: false),
+                    LockoutEnabled = table.Column<bool>(nullable: false),
+                    LockoutEnd = table.Column<DateTimeOffset>(nullable: true),
+                    NormalizedEmail = table.Column<string>(maxLength: 256, nullable: true),
+                    NormalizedUserName = table.Column<string>(maxLength: 256, nullable: true),
+                    PasswordHash = table.Column<string>(nullable: true),
+                    PhoneNumber = table.Column<string>(nullable: true),
+                    PhoneNumberConfirmed = table.Column<bool>(nullable: false),
+                    SecurityStamp = table.Column<string>(nullable: true),
+                    TwoFactorEnabled = table.Column<bool>(nullable: false),
+                    UserName = table.Column<string>(maxLength: 256, nullable: true)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_AspNetUsers", x => x.Id);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "NflGames",
+                columns: table => new
+                {
+                    Id = table.Column<int>(nullable: false)
+                        .Annotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn),
+                    AwayScore = table.Column<string>(nullable: true),
+                    AwayScoreOvertime = table.Column<string>(nullable: true),
+                    AwayScoreQuarter1 = table.Column<string>(nullable: true),
+                    AwayScoreQuarter2 = table.Column<string>(nullable: true),
+                    AwayScoreQuarter3 = table.Column<string>(nullable: true),
+                    AwayScoreQuarter4 = table.Column<string>(nullable: true),
+                    AwayTeam = table.Column<string>(nullable: true),
+                    HomeScore = table.Column<string>(nullable: true),
+                    HomeScoreOvertime = table.Column<string>(nullable: true),
+                    HomeScoreQuarter1 = table.Column<string>(nullable: true),
+                    HomeScoreQuarter2 = table.Column<string>(nullable: true),
+                    HomeScoreQuarter3 = table.Column<string>(nullable: true),
+                    HomeScoreQuarter4 = table.Column<string>(nullable: true),
+                    HomeTeam = table.Column<string>(nullable: true),
+                    StadiumName = table.Column<string>(nullable: true),
+                    Week = table.Column<string>(nullable: true)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_NflGames", x => x.Id);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "NflNews",
+                columns: table => new
+                {
+                    Id = table.Column<int>(nullable: false)
+                        .Annotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn),
+                    Date = table.Column<DateTime>(nullable: false),
+                    Description = table.Column<string>(nullable: true),
+                    Link = table.Column<string>(nullable: true),
+                    Opinion = table.Column<string>(nullable: true),
+                    Team = table.Column<string>(nullable: true),
+                    Title = table.Column<string>(nullable: true)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_NflNews", x => x.Id);
+                });
+
+            migrationBuilder.CreateTable(
                 name: "AspNetRoles",
                 columns: table => new
                 {
@@ -38,99 +109,23 @@ namespace FantasyFootball.Migrations
                 });
 
             migrationBuilder.CreateTable(
-                name: "AspNetRoleClaims",
-                columns: table => new
-                {
-                    Id = table.Column<int>(nullable: false)
-                        .Annotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn),
-                    ClaimType = table.Column<string>(nullable: true),
-                    ClaimValue = table.Column<string>(nullable: true),
-                    RoleId = table.Column<string>(nullable: false)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_AspNetRoleClaims", x => x.Id);
-                    table.ForeignKey(
-                        name: "FK_AspNetRoleClaims_AspNetRoles_RoleId",
-                        column: x => x.RoleId,
-                        principalTable: "AspNetRoles",
-                        principalColumn: "Id",
-                        onDelete: ReferentialAction.Cascade);
-                });
-
-            migrationBuilder.CreateTable(
-                name: "Leagues",
-                columns: table => new
-                {
-                    Id = table.Column<int>(nullable: false)
-                        .Annotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn),
-                    Name = table.Column<string>(nullable: true),
-                    OwnerId = table.Column<int>(nullable: false),
-                    OwnerId1 = table.Column<string>(nullable: true)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_Leagues", x => x.Id);
-                });
-
-            migrationBuilder.CreateTable(
-                name: "AspNetUsers",
-                columns: table => new
-                {
-                    Id = table.Column<string>(nullable: false),
-                    AccessFailedCount = table.Column<int>(nullable: false),
-                    ConcurrencyStamp = table.Column<string>(nullable: true),
-                    Email = table.Column<string>(maxLength: 256, nullable: true),
-                    EmailConfirmed = table.Column<bool>(nullable: false),
-                    LeagueId = table.Column<int>(nullable: true),
-                    LockoutEnabled = table.Column<bool>(nullable: false),
-                    LockoutEnd = table.Column<DateTimeOffset>(nullable: true),
-                    NormalizedEmail = table.Column<string>(maxLength: 256, nullable: true),
-                    NormalizedUserName = table.Column<string>(maxLength: 256, nullable: true),
-                    PasswordHash = table.Column<string>(nullable: true),
-                    PhoneNumber = table.Column<string>(nullable: true),
-                    PhoneNumberConfirmed = table.Column<bool>(nullable: false),
-                    SecurityStamp = table.Column<string>(nullable: true),
-                    TwoFactorEnabled = table.Column<bool>(nullable: false),
-                    UserName = table.Column<string>(maxLength: 256, nullable: true)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_AspNetUsers", x => x.Id);
-                    table.ForeignKey(
-                        name: "FK_AspNetUsers_Leagues_LeagueId",
-                        column: x => x.LeagueId,
-                        principalTable: "Leagues",
-                        principalColumn: "Id",
-                        onDelete: ReferentialAction.Restrict);
-                });
-
-            migrationBuilder.CreateTable(
                 name: "Teams",
                 columns: table => new
                 {
                     Id = table.Column<int>(nullable: false)
                         .Annotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn),
-                    ApplicationUserId = table.Column<string>(nullable: true),
-                    LeagueId = table.Column<int>(nullable: false),
                     Name = table.Column<string>(nullable: true),
-                    UserId = table.Column<int>(nullable: true)
+                    UserId = table.Column<string>(nullable: true)
                 },
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_Teams", x => x.Id);
                     table.ForeignKey(
-                        name: "FK_Teams_AspNetUsers_ApplicationUserId",
-                        column: x => x.ApplicationUserId,
+                        name: "FK_Teams_AspNetUsers_UserId",
+                        column: x => x.UserId,
                         principalTable: "AspNetUsers",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Restrict);
-                    table.ForeignKey(
-                        name: "FK_Teams_Leagues_LeagueId",
-                        column: x => x.LeagueId,
-                        principalTable: "Leagues",
-                        principalColumn: "Id",
-                        onDelete: ReferentialAction.Cascade);
                 });
 
             migrationBuilder.CreateTable(
@@ -175,6 +170,27 @@ namespace FantasyFootball.Migrations
                 });
 
             migrationBuilder.CreateTable(
+                name: "AspNetRoleClaims",
+                columns: table => new
+                {
+                    Id = table.Column<int>(nullable: false)
+                        .Annotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn),
+                    ClaimType = table.Column<string>(nullable: true),
+                    ClaimValue = table.Column<string>(nullable: true),
+                    RoleId = table.Column<string>(nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_AspNetRoleClaims", x => x.Id);
+                    table.ForeignKey(
+                        name: "FK_AspNetRoleClaims_AspNetRoles_RoleId",
+                        column: x => x.RoleId,
+                        principalTable: "AspNetRoles",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
+                });
+
+            migrationBuilder.CreateTable(
                 name: "AspNetUserRoles",
                 columns: table => new
                 {
@@ -204,8 +220,31 @@ namespace FantasyFootball.Migrations
                 {
                     Id = table.Column<int>(nullable: false)
                         .Annotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn),
+                    FantasyPoints = table.Column<float>(nullable: false),
+                    Fumbles = table.Column<float>(nullable: false),
+                    FumblesLost = table.Column<float>(nullable: false),
                     Name = table.Column<string>(nullable: true),
+                    PassingAttempts = table.Column<float>(nullable: false),
+                    PassingCompletions = table.Column<float>(nullable: false),
+                    PassingInterceptions = table.Column<float>(nullable: false),
+                    PassingRating = table.Column<float>(nullable: false),
+                    PassingTouchdowns = table.Column<float>(nullable: false),
+                    PassingYards = table.Column<float>(nullable: false),
+                    PassintCompletionPercentage = table.Column<float>(nullable: false),
+                    Played = table.Column<int>(nullable: false),
+                    PlayerID = table.Column<int>(nullable: false),
                     Position = table.Column<string>(nullable: true),
+                    ReceivingTargets = table.Column<float>(nullable: false),
+                    ReceivingTouchdowns = table.Column<float>(nullable: false),
+                    ReceivingYards = table.Column<float>(nullable: false),
+                    Receptions = table.Column<float>(nullable: false),
+                    RecevingYardsPerReception = table.Column<float>(nullable: false),
+                    RushingAttempts = table.Column<float>(nullable: false),
+                    RushingTouchdowns = table.Column<float>(nullable: false),
+                    RushingYards = table.Column<float>(nullable: false),
+                    RushingYardsPerAttempt = table.Column<float>(nullable: false),
+                    Started = table.Column<int>(nullable: false),
+                    Team = table.Column<string>(nullable: true),
                     TeamId = table.Column<int>(nullable: true)
                 },
                 constraints: table =>
@@ -219,10 +258,31 @@ namespace FantasyFootball.Migrations
                         onDelete: ReferentialAction.Restrict);
                 });
 
-            migrationBuilder.CreateIndex(
-                name: "IX_AspNetUsers_LeagueId",
-                table: "AspNetUsers",
-                column: "LeagueId");
+            migrationBuilder.CreateTable(
+                name: "PlayersTeams",
+                columns: table => new
+                {
+                    Id = table.Column<int>(nullable: false)
+                        .Annotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn),
+                    PlayerId = table.Column<int>(nullable: true),
+                    TeamId = table.Column<int>(nullable: true)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_PlayersTeams", x => x.Id);
+                    table.ForeignKey(
+                        name: "FK_PlayersTeams_Players_PlayerId",
+                        column: x => x.PlayerId,
+                        principalTable: "Players",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Restrict);
+                    table.ForeignKey(
+                        name: "FK_PlayersTeams_Teams_TeamId",
+                        column: x => x.TeamId,
+                        principalTable: "Teams",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Restrict);
+                });
 
             migrationBuilder.CreateIndex(
                 name: "EmailIndex",
@@ -236,24 +296,24 @@ namespace FantasyFootball.Migrations
                 unique: true);
 
             migrationBuilder.CreateIndex(
-                name: "IX_Leagues_OwnerId1",
-                table: "Leagues",
-                column: "OwnerId1");
-
-            migrationBuilder.CreateIndex(
                 name: "IX_Players_TeamId",
                 table: "Players",
                 column: "TeamId");
 
             migrationBuilder.CreateIndex(
-                name: "IX_Teams_ApplicationUserId",
-                table: "Teams",
-                column: "ApplicationUserId");
+                name: "IX_PlayersTeams_PlayerId",
+                table: "PlayersTeams",
+                column: "PlayerId");
 
             migrationBuilder.CreateIndex(
-                name: "IX_Teams_LeagueId",
+                name: "IX_PlayersTeams_TeamId",
+                table: "PlayersTeams",
+                column: "TeamId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_Teams_UserId",
                 table: "Teams",
-                column: "LeagueId");
+                column: "UserId");
 
             migrationBuilder.CreateIndex(
                 name: "RoleNameIndex",
@@ -284,24 +344,18 @@ namespace FantasyFootball.Migrations
                 name: "IX_AspNetUserRoles_UserId",
                 table: "AspNetUserRoles",
                 column: "UserId");
-
-            migrationBuilder.AddForeignKey(
-                name: "FK_Leagues_AspNetUsers_OwnerId1",
-                table: "Leagues",
-                column: "OwnerId1",
-                principalTable: "AspNetUsers",
-                principalColumn: "Id",
-                onDelete: ReferentialAction.Restrict);
         }
 
         protected override void Down(MigrationBuilder migrationBuilder)
         {
-            migrationBuilder.DropForeignKey(
-                name: "FK_AspNetUsers_Leagues_LeagueId",
-                table: "AspNetUsers");
+            migrationBuilder.DropTable(
+                name: "NflGames");
 
             migrationBuilder.DropTable(
-                name: "Players");
+                name: "NflNews");
+
+            migrationBuilder.DropTable(
+                name: "PlayersTeams");
 
             migrationBuilder.DropTable(
                 name: "AspNetRoleClaims");
@@ -319,13 +373,13 @@ namespace FantasyFootball.Migrations
                 name: "AspNetUserTokens");
 
             migrationBuilder.DropTable(
-                name: "Teams");
+                name: "Players");
 
             migrationBuilder.DropTable(
                 name: "AspNetRoles");
 
             migrationBuilder.DropTable(
-                name: "Leagues");
+                name: "Teams");
 
             migrationBuilder.DropTable(
                 name: "AspNetUsers");

@@ -31,7 +31,7 @@ namespace Fantasy_Football.Controllers
             var applicationDbContext = _context.Player
                 .Include(p => p.PlayersTeams).ThenInclude(pt => pt.Team)
                 .Include(p => p.UserTeam)
-                .OrderBy(player => player.Position);
+                .OrderBy(player => player.Name);
             return View(await applicationDbContext.ToListAsync());
         }
 
@@ -170,6 +170,22 @@ namespace Fantasy_Football.Controllers
             }
             await _context.SaveChangesAsync();
             return View();
+        }
+        public async Task<IActionResult> DetailsFromIndex(int? id)
+        {
+            if (id == null)
+            {
+                return NotFound();
+            }
+
+            var player = await _context.Player
+                .SingleOrDefaultAsync(m => m.Id == id);
+            if (player == null)
+            {
+                return NotFound();
+            }
+
+            return View(player);
         }
     }
 }

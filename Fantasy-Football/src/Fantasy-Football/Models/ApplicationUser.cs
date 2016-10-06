@@ -10,6 +10,5 @@ namespace Fantasy_Football.Models
     public class ApplicationUser : IdentityUser
     {
         public virtual ICollection<Team> Teams { get; set; }
-        public virtual ICollection<LeaguesUsers> LeaguesUsers { get; set; }
     }
 }

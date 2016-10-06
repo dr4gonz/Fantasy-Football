@@ -45,7 +45,6 @@ namespace Fantasy_Football.Controllers
 
             return View();
         }
-        [Authorize]
         public IActionResult Admin()
         {
             return View();

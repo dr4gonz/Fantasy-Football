@@ -8,8 +8,8 @@ using Fantasy_Football.Data;
 namespace FantasyFootball.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20161003173521_AddNflGamesModel")]
-    partial class AddNflGamesModel
+    [Migration("20161006171558_Initial")]
+    partial class Initial
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -66,40 +66,6 @@ namespace FantasyFootball.Migrations
                     b.ToTable("AspNetUsers");
                 });
 
-            modelBuilder.Entity("Fantasy_Football.Models.League", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd();
-
-                    b.Property<string>("Name");
-
-                    b.Property<string>("OwnerId");
-
-                    b.HasKey("Id");
-
-                    b.HasIndex("OwnerId");
-
-                    b.ToTable("Leagues");
-                });
-
-            modelBuilder.Entity("Fantasy_Football.Models.LeaguesUsers", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd();
-
-                    b.Property<int?>("LeagueId");
-
-                    b.Property<string>("UserId");
-
-                    b.HasKey("Id");
-
-                    b.HasIndex("LeagueId");
-
-                    b.HasIndex("UserId");
-
-                    b.ToTable("LeaguesUsers");
-                });
-
             modelBuilder.Entity("Fantasy_Football.Models.NflGame", b =>
                 {
                     b.Property<int>("Id")
@@ -135,9 +101,33 @@ namespace FantasyFootball.Migrations
 
                     b.Property<string>("StadiumName");
 
+                    b.Property<string>("Week");
+
                     b.HasKey("Id");
 
                     b.ToTable("NflGames");
+                });
+
+            modelBuilder.Entity("Fantasy_Football.Models.NflNews", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd();
+
+                    b.Property<DateTime>("Date");
+
+                    b.Property<string>("Description");
+
+                    b.Property<string>("Link");
+
+                    b.Property<string>("Opinion");
+
+                    b.Property<string>("Team");
+
+                    b.Property<string>("Title");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("NflNews");
                 });
 
             modelBuilder.Entity("Fantasy_Football.Models.Player", b =>
@@ -168,6 +158,8 @@ namespace FantasyFootball.Migrations
                     b.Property<float>("PassintCompletionPercentage");
 
                     b.Property<int>("Played");
+
+                    b.Property<int>("PlayerID");
 
                     b.Property<string>("Position");
 
@@ -202,20 +194,34 @@ namespace FantasyFootball.Migrations
                     b.ToTable("Players");
                 });
 
-            modelBuilder.Entity("Fantasy_Football.Models.Team", b =>
+            modelBuilder.Entity("Fantasy_Football.Models.PlayersTeams", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd();
 
-                    b.Property<int>("LeagueId");
+                    b.Property<int?>("PlayerId");
+
+                    b.Property<int?>("TeamId");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("PlayerId");
+
+                    b.HasIndex("TeamId");
+
+                    b.ToTable("PlayersTeams");
+                });
+
+            modelBuilder.Entity("Fantasy_Football.Models.Team", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd();
 
                     b.Property<string>("Name");
 
                     b.Property<string>("UserId");
 
                     b.HasKey("Id");
-
-                    b.HasIndex("LeagueId");
 
                     b.HasIndex("UserId");
 
@@ -329,24 +335,6 @@ namespace FantasyFootball.Migrations
                     b.ToTable("AspNetUserTokens");
                 });
 
-            modelBuilder.Entity("Fantasy_Football.Models.League", b =>
-                {
-                    b.HasOne("Fantasy_Football.Models.ApplicationUser", "Owner")
-                        .WithMany()
-                        .HasForeignKey("OwnerId");
-                });
-
-            modelBuilder.Entity("Fantasy_Football.Models.LeaguesUsers", b =>
-                {
-                    b.HasOne("Fantasy_Football.Models.League", "League")
-                        .WithMany("LeaguesUsers")
-                        .HasForeignKey("LeagueId");
-
-                    b.HasOne("Fantasy_Football.Models.ApplicationUser", "User")
-                        .WithMany("LeaguesUsers")
-                        .HasForeignKey("UserId");
-                });
-
             modelBuilder.Entity("Fantasy_Football.Models.Player", b =>
                 {
                     b.HasOne("Fantasy_Football.Models.Team", "UserTeam")
@@ -354,13 +342,19 @@ namespace FantasyFootball.Migrations
                         .HasForeignKey("TeamId");
                 });
 
+            modelBuilder.Entity("Fantasy_Football.Models.PlayersTeams", b =>
+                {
+                    b.HasOne("Fantasy_Football.Models.Player", "Player")
+                        .WithMany("PlayersTeams")
+                        .HasForeignKey("PlayerId");
+
+                    b.HasOne("Fantasy_Football.Models.Team", "Team")
+                        .WithMany("PlayersTeams")
+                        .HasForeignKey("TeamId");
+                });
+
             modelBuilder.Entity("Fantasy_Football.Models.Team", b =>
                 {
-                    b.HasOne("Fantasy_Football.Models.League", "League")
-                        .WithMany("Teams")
-                        .HasForeignKey("LeagueId")
-                        .OnDelete(DeleteBehavior.Cascade);
-
                     b.HasOne("Fantasy_Football.Models.ApplicationUser", "User")
                         .WithMany("Teams")
                         .HasForeignKey("UserId");

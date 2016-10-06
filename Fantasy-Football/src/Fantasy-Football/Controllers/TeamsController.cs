@@ -57,28 +57,25 @@ namespace Fantasy_Football.Controllers
         [Authorize]
         public IActionResult Create()
         {
-            ViewData["LeagueId"] = new SelectList(_context.League, "Id", "Name");
-            ViewData["UserId"] = new SelectList(_context.User, "Id", "Email");
+            var user = _userManager.Users.FirstOrDefault(u => u.UserName == User.Identity.Name);
+            ViewData["UserId"] = user.Id;
             return View();
         }
 
         // POST: Teams/Create
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("Id,LeagueId,UserId,Name")] Team team)
+        public async Task<IActionResult> Create([Bind("Id,User,Name")] Team team)
         {
 
             if (ModelState.IsValid)
             {
-                var user = await _context.User.FirstOrDefaultAsync(u => u.Id == Request.Form["User.Id"]);
-                var league = await _context.League.FirstOrDefaultAsync(l => l.Id == int.Parse(Request.Form["LeagueId"]));
+                var user = await _userManager.Users.FirstOrDefaultAsync(u => u.UserName == User.Identity.Name);
                 team.User = user;
                 _context.Add(team);
-                _context.Entry(league).State = EntityState.Modified;
                 await _context.SaveChangesAsync();
-                return RedirectToAction("Index");
+                return RedirectToAction("MyTeams","UserNavigation");
             }
-            ViewData["LeagueId"] = new SelectList(_context.League, "Id", "Name", team.LeagueId);
             return View(team);
         }
 
