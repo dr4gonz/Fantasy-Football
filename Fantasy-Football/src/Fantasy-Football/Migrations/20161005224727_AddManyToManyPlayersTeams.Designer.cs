@@ -8,9 +8,10 @@ using Fantasy_Football.Data;
 namespace FantasyFootball.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    partial class ApplicationDbContextModelSnapshot : ModelSnapshot
+    [Migration("20161005224727_AddManyToManyPlayersTeams")]
+    partial class AddManyToManyPlayersTeams
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
             modelBuilder
                 .HasAnnotation("ProductVersion", "1.0.0-rtm-21431")
@@ -227,24 +228,6 @@ namespace FantasyFootball.Migrations
                     b.ToTable("Players");
                 });
 
-            modelBuilder.Entity("Fantasy_Football.Models.PlayersTeams", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd();
-
-                    b.Property<int?>("PlayerId");
-
-                    b.Property<int?>("TeamId");
-
-                    b.HasKey("Id");
-
-                    b.HasIndex("PlayerId");
-
-                    b.HasIndex("TeamId");
-
-                    b.ToTable("PlayersTeams");
-                });
-
             modelBuilder.Entity("Fantasy_Football.Models.Team", b =>
                 {
                     b.Property<int>("Id")
@@ -394,17 +377,6 @@ namespace FantasyFootball.Migrations
                 {
                     b.HasOne("Fantasy_Football.Models.Team", "UserTeam")
                         .WithMany("Players")
-                        .HasForeignKey("TeamId");
-                });
-
-            modelBuilder.Entity("Fantasy_Football.Models.PlayersTeams", b =>
-                {
-                    b.HasOne("Fantasy_Football.Models.Player", "Player")
-                        .WithMany("PlayersTeams")
-                        .HasForeignKey("PlayerId");
-
-                    b.HasOne("Fantasy_Football.Models.Team", "Team")
-                        .WithMany("PlayersTeams")
                         .HasForeignKey("TeamId");
                 });
 

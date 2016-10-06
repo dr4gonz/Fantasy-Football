@@ -43,6 +43,7 @@ namespace Fantasy_Football.Models
         public float FantasyPoints { get; set; }
         public int? TeamId { get; set; }
         public virtual Team UserTeam { get; set; }
+        public virtual ICollection<PlayersTeams> PlayersTeams { get; set; }
         public Player() { }
         public static List<Player> GetPlayers()
         {

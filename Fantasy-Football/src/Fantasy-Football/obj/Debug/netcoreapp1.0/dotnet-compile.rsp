@@ -272,6 +272,16 @@ C:\Users\Matt Reyes\Source\Repos\Fantasy-Football\Fantasy-Football\src\Fantasy-F
 C:\Users\Matt Reyes\Source\Repos\Fantasy-Football\Fantasy-Football\src\Fantasy-Football\Migrations\20161003204857_AddNflNewsModelToDatabase.Designer.cs
 C:\Users\Matt Reyes\Source\Repos\Fantasy-Football\Fantasy-Football\src\Fantasy-Football\Migrations\20161005212123_AddPlayerIDtoPlayerModel.cs
 C:\Users\Matt Reyes\Source\Repos\Fantasy-Football\Fantasy-Football\src\Fantasy-Football\Migrations\20161005212123_AddPlayerIDtoPlayerModel.Designer.cs
+C:\Users\Matt Reyes\Source\Repos\Fantasy-Football\Fantasy-Football\src\Fantasy-Football\Migrations\20161005224727_AddManyToManyPlayersTeams.cs
+C:\Users\Matt Reyes\Source\Repos\Fantasy-Football\Fantasy-Football\src\Fantasy-Football\Migrations\20161005224727_AddManyToManyPlayersTeams.Designer.cs
+C:\Users\Matt Reyes\Source\Repos\Fantasy-Football\Fantasy-Football\src\Fantasy-Football\Migrations\20161005225322_AddManyToManyPlayersTeams2.cs
+C:\Users\Matt Reyes\Source\Repos\Fantasy-Football\Fantasy-Football\src\Fantasy-Football\Migrations\20161005225322_AddManyToManyPlayersTeams2.Designer.cs
+C:\Users\Matt Reyes\Source\Repos\Fantasy-Football\Fantasy-Football\src\Fantasy-Football\Migrations\20161005225546_AddManyToManyPlayersTeams3.cs
+C:\Users\Matt Reyes\Source\Repos\Fantasy-Football\Fantasy-Football\src\Fantasy-Football\Migrations\20161005225546_AddManyToManyPlayersTeams3.Designer.cs
+C:\Users\Matt Reyes\Source\Repos\Fantasy-Football\Fantasy-Football\src\Fantasy-Football\Migrations\20161005231127_AddManyToManyPlayersTeamsDbContext.cs
+C:\Users\Matt Reyes\Source\Repos\Fantasy-Football\Fantasy-Football\src\Fantasy-Football\Migrations\20161005231127_AddManyToManyPlayersTeamsDbContext.Designer.cs
+C:\Users\Matt Reyes\Source\Repos\Fantasy-Football\Fantasy-Football\src\Fantasy-Football\Migrations\20161005231639_FixBugInTeamAndPlayerModels.cs
+C:\Users\Matt Reyes\Source\Repos\Fantasy-Football\Fantasy-Football\src\Fantasy-Football\Migrations\20161005231639_FixBugInTeamAndPlayerModels.Designer.cs
 C:\Users\Matt Reyes\Source\Repos\Fantasy-Football\Fantasy-Football\src\Fantasy-Football\Migrations\ApplicationDbContextModelSnapshot.cs
 C:\Users\Matt Reyes\Source\Repos\Fantasy-Football\Fantasy-Football\src\Fantasy-Football\Models\ApplicationUser.cs
 C:\Users\Matt Reyes\Source\Repos\Fantasy-Football\Fantasy-Football\src\Fantasy-Football\Models\EnvironmentVariables.cs
@@ -281,6 +291,7 @@ C:\Users\Matt Reyes\Source\Repos\Fantasy-Football\Fantasy-Football\src\Fantasy-F
 C:\Users\Matt Reyes\Source\Repos\Fantasy-Football\Fantasy-Football\src\Fantasy-Football\Models\NflGame.cs
 C:\Users\Matt Reyes\Source\Repos\Fantasy-Football\Fantasy-Football\src\Fantasy-Football\Models\NflNews.cs
 C:\Users\Matt Reyes\Source\Repos\Fantasy-Football\Fantasy-Football\src\Fantasy-Football\Models\Player.cs
+C:\Users\Matt Reyes\Source\Repos\Fantasy-Football\Fantasy-Football\src\Fantasy-Football\Models\PlayersTeams.cs
 C:\Users\Matt Reyes\Source\Repos\Fantasy-Football\Fantasy-Football\src\Fantasy-Football\Models\Team.cs
 C:\Users\Matt Reyes\Source\Repos\Fantasy-Football\Fantasy-Football\src\Fantasy-Football\Models\AccountViewModels\ExternalLoginConfirmationViewModel.cs
 C:\Users\Matt Reyes\Source\Repos\Fantasy-Football\Fantasy-Football\src\Fantasy-Football\Models\AccountViewModels\ForgotPasswordViewModel.cs

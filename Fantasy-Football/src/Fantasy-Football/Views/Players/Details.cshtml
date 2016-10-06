@@ -263,5 +263,5 @@
 }
 <div>
     <a asp-action="Edit" asp-route-id="@Model.Id">Edit</a> |
-    <a asp-action="Details" asp-controller="Teams" asp-route-id="@Model.TeamId">Back to List</a>
+    <a asp-action="Details" asp-controller="Teams" asp-route-id="@ViewBag.CurrentTeamId">Back to List</a>
 </div>

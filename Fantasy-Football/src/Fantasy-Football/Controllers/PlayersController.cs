@@ -26,6 +26,7 @@ namespace Fantasy_Football.Controllers
         public async Task<IActionResult> Index()
         {
             var applicationDbContext = _context.Player
+                .Include(p => p.PlayersTeams).ThenInclude(pt => pt.Team)
                 .Include(p => p.UserTeam)
                 .OrderBy(player => player.Position);
             return View(await applicationDbContext.ToListAsync());
@@ -39,9 +40,10 @@ namespace Fantasy_Football.Controllers
                 return NotFound();
             }
 
-            var player = await _context.Player.SingleOrDefaultAsync(m => m.Id == id);
+            var player = await _context.Player.Include(p => p.PlayersTeams)
+                .ThenInclude(pt => pt.Team)
+                .SingleOrDefaultAsync(m => m.Id == id);
             ViewData["CurrentTeamId"] = currentTeamId;
-            Console.WriteLine("Team id"+currentTeamId);
             if (player == null)
             {
                 return NotFound();
@@ -131,7 +133,7 @@ namespace Fantasy_Football.Controllers
                 return NotFound();
             }
 
-            var player = await _context.Player.SingleOrDefaultAsync(m => m.Id == id);
+            var player = await _context.Player.Include(p => p.PlayersTeams).SingleOrDefaultAsync(m => m.Id == id);
             if (player == null)
             {
                 return NotFound();
@@ -145,7 +147,7 @@ namespace Fantasy_Football.Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> DeleteConfirmed(int id)
         {
-            var player = await _context.Player.SingleOrDefaultAsync(m => m.Id == id);
+            var player = await _context.Player.Include(p => p.PlayersTeams).SingleOrDefaultAsync(m => m.Id == id);
             _context.Player.Remove(player);
             await _context.SaveChangesAsync();
             return RedirectToAction("Index");

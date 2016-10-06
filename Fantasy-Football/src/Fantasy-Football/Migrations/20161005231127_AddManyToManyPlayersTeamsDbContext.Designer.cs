@@ -8,9 +8,10 @@ using Fantasy_Football.Data;
 namespace FantasyFootball.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    partial class ApplicationDbContextModelSnapshot : ModelSnapshot
+    [Migration("20161005231127_AddManyToManyPlayersTeamsDbContext")]
+    partial class AddManyToManyPlayersTeamsDbContext
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
             modelBuilder
                 .HasAnnotation("ProductVersion", "1.0.0-rtm-21431")
@@ -194,6 +195,8 @@ namespace FantasyFootball.Migrations
 
                     b.Property<int>("PlayerID");
 
+                    b.Property<int?>("PlayersTeamsId");
+
                     b.Property<string>("Position");
 
                     b.Property<float>("ReceivingTargets");
@@ -222,6 +225,9 @@ namespace FantasyFootball.Migrations
 
                     b.HasKey("Id");
 
+                    b.HasIndex("PlayersTeamsId")
+                        .IsUnique();
+
                     b.HasIndex("TeamId");
 
                     b.ToTable("Players");
@@ -232,15 +238,7 @@ namespace FantasyFootball.Migrations
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd();
 
-                    b.Property<int?>("PlayerId");
-
-                    b.Property<int?>("TeamId");
-
                     b.HasKey("Id");
-
-                    b.HasIndex("PlayerId");
-
-                    b.HasIndex("TeamId");
 
                     b.ToTable("PlayersTeams");
                 });
@@ -254,11 +252,16 @@ namespace FantasyFootball.Migrations
 
                     b.Property<string>("Name");
 
+                    b.Property<int?>("PlayersTeamsId");
+
                     b.Property<string>("UserId");
 
                     b.HasKey("Id");
 
                     b.HasIndex("LeagueId");
+
+                    b.HasIndex("PlayersTeamsId")
+                        .IsUnique();
 
                     b.HasIndex("UserId");
 
@@ -392,19 +395,12 @@ namespace FantasyFootball.Migrations
 
             modelBuilder.Entity("Fantasy_Football.Models.Player", b =>
                 {
+                    b.HasOne("Fantasy_Football.Models.PlayersTeams", "PlayersTeams")
+                        .WithOne("Player")
+                        .HasForeignKey("Fantasy_Football.Models.Player", "PlayersTeamsId");
+
                     b.HasOne("Fantasy_Football.Models.Team", "UserTeam")
                         .WithMany("Players")
-                        .HasForeignKey("TeamId");
-                });
-
-            modelBuilder.Entity("Fantasy_Football.Models.PlayersTeams", b =>
-                {
-                    b.HasOne("Fantasy_Football.Models.Player", "Player")
-                        .WithMany("PlayersTeams")
-                        .HasForeignKey("PlayerId");
-
-                    b.HasOne("Fantasy_Football.Models.Team", "Team")
-                        .WithMany("PlayersTeams")
                         .HasForeignKey("TeamId");
                 });
 
@@ -414,6 +410,10 @@ namespace FantasyFootball.Migrations
                         .WithMany("Teams")
                         .HasForeignKey("LeagueId")
                         .OnDelete(DeleteBehavior.Cascade);
+
+                    b.HasOne("Fantasy_Football.Models.PlayersTeams", "PlayersTeams")
+                        .WithOne("Team")
+                        .HasForeignKey("Fantasy_Football.Models.Team", "PlayersTeamsId");
 
                     b.HasOne("Fantasy_Football.Models.ApplicationUser", "User")
                         .WithMany("Teams")

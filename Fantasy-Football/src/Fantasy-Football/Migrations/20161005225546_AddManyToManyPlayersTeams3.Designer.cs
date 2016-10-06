@@ -8,9 +8,10 @@ using Fantasy_Football.Data;
 namespace FantasyFootball.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    partial class ApplicationDbContextModelSnapshot : ModelSnapshot
+    [Migration("20161005225546_AddManyToManyPlayersTeams3")]
+    partial class AddManyToManyPlayersTeams3
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
             modelBuilder
                 .HasAnnotation("ProductVersion", "1.0.0-rtm-21431")
@@ -400,11 +401,11 @@ namespace FantasyFootball.Migrations
             modelBuilder.Entity("Fantasy_Football.Models.PlayersTeams", b =>
                 {
                     b.HasOne("Fantasy_Football.Models.Player", "Player")
-                        .WithMany("PlayersTeams")
+                        .WithMany()
                         .HasForeignKey("PlayerId");
 
                     b.HasOne("Fantasy_Football.Models.Team", "Team")
-                        .WithMany("PlayersTeams")
+                        .WithMany()
                         .HasForeignKey("TeamId");
                 });
 

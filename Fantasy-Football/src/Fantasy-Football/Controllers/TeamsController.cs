@@ -37,12 +37,12 @@ namespace Fantasy_Football.Controllers
             }
 
             var team = await _context.Team
+                .Include(t => t.PlayersTeams).ThenInclude(pt => pt.Player)
                 .Include(t => t.User)
-                .Include(t => t.Players)
                 .SingleOrDefaultAsync(m => m.Id == id);
             ViewData["Players"] = new SelectList(_context.Player.OrderBy(player => player.Name), "Id", "Name");
             ViewData["CurrentTeamId"] = id;
-            Console.WriteLine("Team Id" +id);
+            Console.WriteLine(id);
             if (team == null)
             {
                 return NotFound();
@@ -152,7 +152,7 @@ namespace Fantasy_Football.Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> DeleteConfirmed(int id)
         {
-            var team = await _context.Team.SingleOrDefaultAsync(m => m.Id == id);
+            var team = await _context.Team.Include(t => t.PlayersTeams).SingleOrDefaultAsync(m => m.Id == id);
             _context.Team.Remove(team);
             await _context.SaveChangesAsync();
             return RedirectToAction("Index");
@@ -167,10 +167,10 @@ namespace Fantasy_Football.Controllers
         {
             var team = await _context.Team.FirstOrDefaultAsync(t => t.Id == TeamId);
             var player = await _context.Player.FirstOrDefaultAsync(p => p.Id == PlayerId);
-            player.TeamId = TeamId;
-            player.UserTeam = team;
+            PlayersTeams newPlayersTeams = new Models.PlayersTeams { Player = player, Team = team };
             _context.Entry(team).State = EntityState.Modified;
             _context.Entry(player).State = EntityState.Modified;
+            _context.Add(newPlayersTeams);
             await _context.SaveChangesAsync();
             return player;
 

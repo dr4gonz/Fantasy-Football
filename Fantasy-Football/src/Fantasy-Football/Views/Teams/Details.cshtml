@@ -13,30 +13,22 @@
 <div>
     <h4>Players</h4>
     <hr />
-    @if(Model.Players.Count > 0)
-    {
     <table class="table table-bordered" id="playerTable">
         <tr>
             <th>Name</th>
             <th>Position</th>
             <th>Fantasy Points</th>
         </tr>
-        @foreach(var player in Model.Players)
+        @foreach(var player in Model.PlayersTeams)
         {
         <tr>
-            <td><a asp-action="Details" asp-controller="Players" asp-route-id="@player.Id" asp-route-currentTeamId="@ViewBag.CurrenTeamId">@player.Name</a></td>
-            <td>@player.Position</td>
-            <td>@player.FantasyPoints</td>
+            <td><a asp-action="Details" asp-controller="Players" asp-route-id="@player.Player.Id" asp-route-currentTeamId=@ViewData["CurrentTeamId"]>@player.Player.Name</a></td>
+            <td>@player.Player.Position</td>
+            <td>@player.Player.FantasyPoints</td>
         </tr>
         }
     </table>
     <p>Fantasy Points: @Model.Score</p>
-    }
-    else
-    {
-        <p>This Team has no players</p>
-
-    }
 </div>
 
 <div>

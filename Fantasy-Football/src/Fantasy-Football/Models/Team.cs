@@ -15,6 +15,7 @@ namespace Fantasy_Football.Models
         public ApplicationUser User { get; set; }
         public int LeagueId { get; set; }
         public virtual League League { get; set; }
+        public virtual ICollection<PlayersTeams> PlayersTeams { get; set; }
         public Team() { }
         public Team(string name, int leagueId, ApplicationUser user, League league)
         {
@@ -28,9 +29,9 @@ namespace Fantasy_Football.Models
             get
             {
                 double teamScore = 0.00;
-                foreach(var player in this.Players)
+                foreach(var player in this.PlayersTeams)
                 {
-                    teamScore += player.FantasyPoints;
+                    teamScore += player.Player.FantasyPoints;
                 }
                 return Math.Round(teamScore, 2);
             }
